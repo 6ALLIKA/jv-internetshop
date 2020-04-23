@@ -31,10 +31,10 @@ public class ShopApp {
         productService.create(product2);
         productService.create(product3);
 
-        Product update = new Product("Shtanu", new BigDecimal(400));
-        update.setItemId(4L);
+        product3.setPrice(new BigDecimal(400));
 
-        productService.update(update);
+        productService.update(product3); // но изза того что у нас база данный в джаве,
+        // а не внешняя, то это юзлесс пока что)
         productService.delete(3L);
     }
 }
