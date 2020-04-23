@@ -3,7 +3,7 @@ package ma.internetshop.model;
 import java.math.BigDecimal;
 
 public class Product {
-    private Long Id;
+    private Long id;
     private String name;
     private BigDecimal price;
 
@@ -13,11 +13,11 @@ public class Product {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Long itemId) {
-        this.Id = itemId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{"
-                + "itemId=" + Id
+                + "Id=" + id
                 + ", name='" + name + '\''
                 + ", price=" + price + '}';
     }
