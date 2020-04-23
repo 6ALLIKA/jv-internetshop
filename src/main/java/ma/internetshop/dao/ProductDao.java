@@ -5,13 +5,13 @@ import java.util.Optional;
 import ma.internetshop.model.Product;
 
 public interface ProductDao {
-    Product create(Product item);
+    Product create(Product product);
 
     Optional<Product> get(Long id);
 
     List<Product> getAll();
 
-    Product update(Product item);
+    Product update(Product product);
 
     boolean delete(Long id);
 }
