@@ -33,8 +33,7 @@ public class ShopApp {
 
         product3.setPrice(new BigDecimal(400));
 
-        productService.update(product3); // но изза того что у нас база данный в джаве,
-        // а не внешняя, то это юзлесс пока что)
+        productService.update(product3);
         productService.delete(3L);
     }
 }
