@@ -59,6 +59,10 @@ public class ShopApp {
         ShoppingCartService shoppingCartService =
                 (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
         ShoppingCart cart = new ShoppingCart(user);
+        ShoppingCart cart1 = new ShoppingCart(user1);
+
+        shoppingCartService.addProduct(cart1, product);
+        System.out.println(shoppingCartService.deleteProduct(cart1, product));
 
         shoppingCartService.addProduct(cart, product);
         List<Product> products1 =
@@ -70,6 +74,5 @@ public class ShopApp {
         OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
         Order order = orderService.completeOrder(cart);
         System.out.println(order);
-
     }
 }
