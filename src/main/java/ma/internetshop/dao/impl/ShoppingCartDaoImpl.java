@@ -2,12 +2,10 @@ package ma.internetshop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ma.internetshop.dao.ShoppingCartDao;
 import ma.internetshop.db.Storage;
 import ma.internetshop.lib.Dao;
-import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
 
 @Dao
