@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import ma.internetshop.model.Order;
 import ma.internetshop.model.Product;
-import ma.internetshop.model.User;
 
 public interface OrderDao {
 
-    Order create(List<Product> products, User user);
+    Order create(Order order);
 
-    List<Order> getUserOrders(User user);
+    List<Product> get(Long id);
 
     Optional<Order> getOrder(Long id);
 

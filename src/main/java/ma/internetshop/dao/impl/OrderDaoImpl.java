@@ -14,17 +14,18 @@ import ma.internetshop.model.User;
 public class OrderDaoImpl implements OrderDao {
 
     @Override
-    public Order create(List<Product> products, User user) {
-        Order order = new Order(products, user);
+    public Order create(Order order) {
         Storage.addOrder(order);
         return order;
     }
 
     @Override
-    public List<Order> getUserOrders(User user) {
+    public List<Product> get(Long id) {
         return Storage.orders.stream()
-                .filter(order -> order.getUser().getId().equals(user.getId()))
-                .collect(Collectors.toList());
+                .filter(order -> order.getId().equals(id))
+                .map(Order::getProducts)
+                .findFirst()
+                .get();
     }
 
     @Override

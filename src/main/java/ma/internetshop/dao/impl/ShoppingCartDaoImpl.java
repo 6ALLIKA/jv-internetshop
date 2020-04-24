@@ -15,11 +15,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
-        boolean isExist = Storage.shoppingCarts.stream()
-                .anyMatch(cart -> cart.getId().equals(shoppingCart.getId()));
-        if (!isExist) {
-            Storage.addShoppingCart(shoppingCart);
-        }
+        Storage.addShoppingCart(shoppingCart);
         return shoppingCart;
     }
 
@@ -29,6 +25,11 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
                 .stream()
                 .filter(cart -> cart.getUser().getId().equals(userId))
                 .findFirst();
+    }
+
+    @Override
+    public List<ShoppingCart> getAll() {
+        return Storage.shoppingCarts;
     }
 
     @Override

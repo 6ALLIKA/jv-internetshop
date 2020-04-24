@@ -3,11 +3,12 @@ package ma.internetshop.service;
 import java.util.List;
 import ma.internetshop.model.Order;
 import ma.internetshop.model.Product;
+import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.model.User;
 
 public interface OrderService {
 
-    Order completeOrder(List<Product> products, User user);
+    Order completeOrder(ShoppingCart shoppingCart);
 
     List<Order> getUserOrders(User user);
 

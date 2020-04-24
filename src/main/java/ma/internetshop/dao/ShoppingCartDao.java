@@ -11,6 +11,8 @@ public interface ShoppingCartDao {
 
     Optional<ShoppingCart> getByUserId(Long userId);
 
+    List<ShoppingCart> getAll();
+
     List<Product> getAllProducts(ShoppingCart shoppingCart);
 
     ShoppingCart update(ShoppingCart shoppingCart);

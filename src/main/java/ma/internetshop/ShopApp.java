@@ -68,9 +68,7 @@ public class ShopApp {
         }
 
         OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-        Order order = orderService.completeOrder(shoppingCartService
-                .getAllProducts(shoppingCartService
-                        .getByUserId(1L)), user);
+        Order order = orderService.completeOrder(cart);
         System.out.println(order);
 
     }
