@@ -7,11 +7,11 @@ import ma.internetshop.model.ShoppingCart;
 
 public interface ShoppingCartDao {
 
+    ShoppingCart create(ShoppingCart shoppingCart);
+
     Optional<ShoppingCart> getByUserId(Long userId);
 
     List<Product> getAllProducts(ShoppingCart shoppingCart);
 
     ShoppingCart update(ShoppingCart shoppingCart);
-
-    ShoppingCart create(ShoppingCart shoppingCart);
 }
