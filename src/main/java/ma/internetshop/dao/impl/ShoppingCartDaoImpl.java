@@ -33,15 +33,6 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return Storage.shoppingCarts
-                .stream()
-                .filter(cart -> cart.getId().equals(shoppingCart.getId()))
-                .flatMap(cart -> cart.getProducts().stream())
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public ShoppingCart update(ShoppingCart shoppingCart) {
         IntStream.range(0, Storage.shoppingCarts.size())
                 .filter(x -> shoppingCart.getId().equals(Storage.shoppingCarts.get(x).getId()))
