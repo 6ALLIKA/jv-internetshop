@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import ma.internetshop.dao.OrderDao;
-import ma.internetshop.dao.ShoppingCartDao;
 import ma.internetshop.lib.Inject;
 import ma.internetshop.lib.Service;
 import ma.internetshop.model.Order;
-import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.model.User;
 import ma.internetshop.service.OrderService;
@@ -23,7 +21,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
-        Order order = orderDao.create(new Order(new ArrayList<>(shoppingCart.getProducts()), shoppingCart.getUser()));
+        Order order = orderDao
+                .create(new Order(new ArrayList<>(shoppingCart.getProducts()),
+                        shoppingCart.getUser()));
         shoppingCartService.clear(shoppingCart);
         return order;
     }

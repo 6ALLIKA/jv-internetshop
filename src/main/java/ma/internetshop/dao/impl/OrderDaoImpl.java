@@ -2,13 +2,11 @@ package ma.internetshop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import ma.internetshop.dao.OrderDao;
 import ma.internetshop.db.Storage;
 import ma.internetshop.lib.Dao;
 import ma.internetshop.model.Order;
 import ma.internetshop.model.Product;
-import ma.internetshop.model.User;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {

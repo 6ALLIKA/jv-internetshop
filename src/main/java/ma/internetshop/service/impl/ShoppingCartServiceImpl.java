@@ -2,7 +2,6 @@ package ma.internetshop.service.impl;
 
 import java.util.List;
 import ma.internetshop.dao.ShoppingCartDao;
-import ma.internetshop.db.Storage;
 import ma.internetshop.lib.Inject;
 import ma.internetshop.lib.Service;
 import ma.internetshop.model.Product;
@@ -21,13 +20,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         if (!isExist) {
             shoppingCartDao.create(shoppingCart);
         }
-        shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get().getProducts().add(product);
-        return shoppingCartDao.update(shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get());
+        shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get()
+                .getProducts().add(product);
+        return shoppingCartDao.update(shoppingCartDao
+                .getByUserId(shoppingCart.getUser().getId()).get());
     }
 
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
-        if (shoppingCart.getProducts().removeIf(prod -> prod.getId().equals(product.getId()))) {
+        if (shoppingCart
+                .getProducts()
+                .removeIf(prod -> prod.getId().equals(product.getId()))) {
             shoppingCartDao.update(shoppingCart);
             return true;
         }

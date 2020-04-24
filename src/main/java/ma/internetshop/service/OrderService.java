@@ -2,7 +2,6 @@ package ma.internetshop.service;
 
 import java.util.List;
 import ma.internetshop.model.Order;
-import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.model.User;
 
