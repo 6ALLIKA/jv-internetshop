@@ -7,7 +7,6 @@ import ma.internetshop.dao.OrderDao;
 import ma.internetshop.db.Storage;
 import ma.internetshop.lib.Dao;
 import ma.internetshop.model.Order;
-import ma.internetshop.model.Product;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
