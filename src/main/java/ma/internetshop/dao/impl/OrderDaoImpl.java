@@ -2,6 +2,7 @@ package ma.internetshop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import ma.internetshop.dao.OrderDao;
 import ma.internetshop.db.Storage;
 import ma.internetshop.lib.Dao;
@@ -12,22 +13,13 @@ import ma.internetshop.model.Product;
 public class OrderDaoImpl implements OrderDao {
 
     @Override
-    public Order create(Order order) {
-        Storage.addOrder(order);
-        return order;
+    public Order create(Order element) {
+        Storage.addOrder(element);
+        return element;
     }
 
     @Override
-    public List<Product> get(Long id) {
-        return Storage.orders.stream()
-                .filter(order -> order.getId().equals(id))
-                .map(Order::getProducts)
-                .findFirst()
-                .get();
-    }
-
-    @Override
-    public Optional<Order> getOrder(Long id) {
+    public Optional<Order> get(Long id) {
         return Storage.orders
                 .stream()
                 .filter(order -> order.getId().equals(id))
@@ -37,6 +29,14 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         return Storage.orders;
+    }
+
+    @Override
+    public Order update(Order element) {
+        IntStream.range(0, Storage.orders.size())
+                .filter(x -> element.getId().equals(Storage.orders.get(x).getId()))
+                .forEach(i -> Storage.orders.set(i, element));
+        return element;
     }
 
     @Override

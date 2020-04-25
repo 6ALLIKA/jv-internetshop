@@ -13,7 +13,7 @@ import ma.internetshop.service.ShoppingCartService;
 import ma.internetshop.service.UserService;
 
 public class ShopApp {
-    private static Injector injector = Injector.getInstance("ma.internetshop");
+    private static final Injector injector = Injector.getInstance("ma.internetshop");
 
     public static void main(String[] args) {
         ProductService productService = (ProductService) injector.getInstance(ProductService.class);
