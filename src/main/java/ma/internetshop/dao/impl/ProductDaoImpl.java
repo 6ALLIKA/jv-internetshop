@@ -13,9 +13,9 @@ public class ProductDaoImpl implements ProductDao {
     private static long count = 0;
 
     @Override
-    public Product create(Product product) {
-        Storage.addProduct(product);
-        return product;
+    public Product create(Product element) {
+        Storage.addProduct(element);
+        return element;
     }
 
     @Override
@@ -32,11 +32,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product update(Product product) {
+    public Product update(Product element) {
         IntStream.range(0, Storage.products.size())
-                .filter(x -> product.getId().equals(Storage.products.get(x).getId()))
-                .forEach(i -> Storage.products.set(i, product));
-        return product;
+                .filter(x -> element.getId().equals(Storage.products.get(x).getId()))
+                .forEach(i -> Storage.products.set(i, element));
+        return element;
     }
 
     @Override
