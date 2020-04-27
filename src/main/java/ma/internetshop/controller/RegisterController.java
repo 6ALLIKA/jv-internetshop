@@ -14,7 +14,8 @@ import ma.internetshop.service.UserService;
 public class RegisterController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
-    private ShoppingCartService shoppingCartService = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+    private ShoppingCartService shoppingCartService
+            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

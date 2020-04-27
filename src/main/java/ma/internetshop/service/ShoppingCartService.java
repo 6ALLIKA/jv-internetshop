@@ -1,7 +1,6 @@
 package ma.internetshop.service;
 
 import java.util.List;
-import ma.internetshop.dao.GenericDao;
 import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
 
