@@ -4,7 +4,7 @@ import java.util.List;
 import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
 
-public interface ShoppingCartService {
+public interface ShoppingCartService extends GenericService<ShoppingCart, Long> {
 
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
 
