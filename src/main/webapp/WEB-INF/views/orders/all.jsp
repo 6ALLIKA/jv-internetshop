@@ -30,7 +30,7 @@
                 <button onclick="document.location='details?id=${order.id}'">Look inside</button>
             </td>
             <td>
-                <button onclick="document.location='/orders/delete?id=${order.id}'">Delete</button>
+                <button onclick="document.location='delete?id=${order.id}'">Delete</button>
             </td>
         </tr>
     </c:forEach>
