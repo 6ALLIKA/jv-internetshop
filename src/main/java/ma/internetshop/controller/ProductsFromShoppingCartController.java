@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import ma.internetshop.lib.Injector;
 import ma.internetshop.service.ShoppingCartService;
 
-public class ShoppingCartController extends HttpServlet {
+public class ProductsFromShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("ma.internetshop");
     private ShoppingCartService shoppingCartService =

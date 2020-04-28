@@ -11,7 +11,7 @@ import ma.internetshop.model.User;
 import ma.internetshop.service.ShoppingCartService;
 import ma.internetshop.service.UserService;
 
-public class RegisterController extends HttpServlet {
+public class RegistrationController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ShoppingCartService shoppingCartService
