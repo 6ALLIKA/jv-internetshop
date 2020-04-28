@@ -10,7 +10,7 @@ import ma.internetshop.lib.Injector;
 import ma.internetshop.model.Product;
 import ma.internetshop.service.ProductService;
 
-public class CreateProductController extends HttpServlet {
+public class AddProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("ma.internetshop");
     private ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -27,6 +27,6 @@ public class CreateProductController extends HttpServlet {
         String name = req.getParameter("name");
         BigDecimal price = BigDecimal.valueOf(Long.parseLong(req.getParameter("price")));
         productService.create(new Product(name, price));
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/products/add");
     }
 }

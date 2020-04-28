@@ -10,6 +10,6 @@
 <button onclick="document.location='/registration'">Регистрация</button>
 <button onclick="document.location='/products/all'">Все продукты</button>
 <button onclick="document.location='/products/add'">Добавить продукт</button>
-<button onclick="document.location='/cart'">Корзина</button>
+<button onclick="document.location='/shoppingcart'">Корзина</button>
 </body>
 </html>

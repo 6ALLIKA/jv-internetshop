@@ -26,7 +26,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <button onclick="document.location='addtocart?id=${product.id}'">Добавить в корзину</button>
+                <button onclick="document.location='addtoshoppingcart?id=${product.id}'">Добавить в корзину</button>
             </td>
             <td>
                 <button onclick="document.location='deleteproduct?id=${product.id}'">Удалить</button>

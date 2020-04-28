@@ -49,7 +49,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addToCart</servlet-name>
-        <url-pattern>/addtocart</url-pattern>
+        <url-pattern>/addtoshoppingcart</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -58,11 +58,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>cart</servlet-name>
-        <url-pattern>/cart</url-pattern>
+        <url-pattern>/shoppingcart</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>addProduct</servlet-name>
-        <servlet-class>ma.internetshop.controller.CreateProductController</servlet-class>
+        <servlet-class>ma.internetshop.controller.AddProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
