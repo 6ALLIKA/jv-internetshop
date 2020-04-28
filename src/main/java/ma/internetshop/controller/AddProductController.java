@@ -11,9 +11,9 @@ import ma.internetshop.model.Product;
 import ma.internetshop.service.ProductService;
 
 public class AddProductController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("ma.internetshop");
+    private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private ProductService productService =
-            (ProductService) injector.getInstance(ProductService.class);
+            (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

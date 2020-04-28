@@ -8,7 +8,7 @@ public interface ShoppingCartService extends GenericService<ShoppingCart, Long> 
 
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
 
-    ShoppingCart get(Long userId);
+    ShoppingCart getByUserId(Long userId);
 
     List<Product> getAllProducts(ShoppingCart shoppingCart);
 
