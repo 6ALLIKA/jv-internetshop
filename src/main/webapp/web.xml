@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>allUsers</servlet-name>
-        <servlet-class>ma.internetshop.controller.AllUsersController</servlet-class>
+        <servlet-class>ma.internetshop.controller.GetAllUsersController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -24,12 +24,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Registration</servlet-name>
+        <servlet-name>registration</servlet-name>
         <servlet-class>ma.internetshop.controller.RegistrationController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Registration</servlet-name>
+        <servlet-name>registration</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
@@ -44,20 +44,20 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>addToCart</servlet-name>
-        <servlet-class>ma.internetshop.controller.AddToShoppingCartController</servlet-class>
+        <servlet-name>addToShoppingCart</servlet-name>
+        <servlet-class>ma.internetshop.controller.AddProductToShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addToCart</servlet-name>
-        <url-pattern>/addtoshoppingcart</url-pattern>
+        <servlet-name>addToShoppingCart</servlet-name>
+        <url-pattern>/products/addtoshoppingcart</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>cart</servlet-name>
+        <servlet-name>shoppingCart</servlet-name>
         <servlet-class>ma.internetshop.controller.ProductsFromShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>cart</servlet-name>
+        <servlet-name>shoppingCart</servlet-name>
         <url-pattern>/shoppingcart</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -71,7 +71,7 @@
 
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>ma.internetshop.controller.AllProductsController</servlet-class>
+        <servlet-class>ma.internetshop.controller.GetAllProductsController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -85,7 +85,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProduct</servlet-name>
-        <url-pattern>/deleteproduct</url-pattern>
+        <url-pattern>/products/deleteproduct</url-pattern>
     </servlet-mapping>
 
 </web-app>

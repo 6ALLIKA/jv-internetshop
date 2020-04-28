@@ -26,6 +26,6 @@
         </tr>
     </c:forEach>
 </table>
-    <button onclick="document.location='/index'">На главную</button>
+    <button onclick="document.location='/index'">Main page</button>
 </body>
 </html>

@@ -10,7 +10,7 @@ import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.service.ProductService;
 import ma.internetshop.service.ShoppingCartService;
 
-public class AddToShoppingCartController extends HttpServlet {
+public class AddProductToShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("ma.internetshop");
     private ProductService productService =
@@ -24,6 +24,6 @@ public class AddToShoppingCartController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.get(USER_ID);
         Product product = productService.get(Long.parseLong(req.getParameter("id")));
         shoppingCartService.addProduct(shoppingCart, product);
-        resp.sendRedirect(req.getContextPath() + "/cart");
+        resp.sendRedirect(req.getContextPath() + "/products/all");
     }
 }

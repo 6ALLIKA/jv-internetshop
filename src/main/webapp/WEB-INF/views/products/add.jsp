@@ -6,7 +6,6 @@
 <body>
 <h1>Put product details below</h1>
 
-
 <form method="post" action="${pageContext.request.contextPath}add">
     <table border="1">
         <tr>
@@ -21,11 +20,11 @@
         <tr>
             <td></td>
             <td>
-                <button type="submit">Добавить</button>
+                <button type="submit">Add product</button>
             </td>
         </tr>
     </table>
 </form>
-<button onclick="document.location='/index'">На главную</button>
+<button onclick="document.location='/index'">Main page</button>
 </body>
 </html>

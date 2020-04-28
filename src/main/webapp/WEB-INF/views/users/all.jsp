@@ -21,11 +21,11 @@
                 <c:out value="${user.name}"/>
             </td>
             <td>
-                <button onclick="document.location='delete?id=${user.id}'">Удалить</button>
+                <button onclick="document.location='delete?id=${user.id}'">Delete</button>
             </td>
         </tr>
     </c:forEach>
 </table>
-<button onclick="document.location='/index'">На главную</button>
+<button onclick="document.location='/index'">Main page</button>
 </body>
 </html>

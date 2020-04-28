@@ -4,12 +4,11 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Hello world</h1>
-<h2>Time now is ${time}</h2>
-<button onclick="document.location='users/all'">Все юзеры</button>
-<button onclick="document.location='/registration'">Регистрация</button>
-<button onclick="document.location='/products/all'">Все продукты</button>
-<button onclick="document.location='/products/add'">Добавить продукт</button>
-<button onclick="document.location='/shoppingcart'">Корзина</button>
+<h1>AMAZON</h1>
+<button onclick="document.location='users/all'">All users</button>
+<button onclick="document.location='/registration'">Registration</button>
+<button onclick="document.location='/products/all'">All products</button>
+<button onclick="document.location='/products/add'">Add product</button>
+<button onclick="document.location='/shoppingcart'">ShoppingCart</button>
 </body>
 </html>

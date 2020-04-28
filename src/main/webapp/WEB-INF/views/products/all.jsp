@@ -26,14 +26,14 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <button onclick="document.location='addtoshoppingcart?id=${product.id}'">Добавить в корзину</button>
+                <button onclick="document.location='addtoshoppingcart?id=${product.id}'">Buy</button>
             </td>
             <td>
-                <button onclick="document.location='deleteproduct?id=${product.id}'">Удалить</button>
+                <button onclick="document.location='deleteproduct?id=${product.id}'">Delete</button>
             </td>
         </tr>
     </c:forEach>
 </table>
-<button onclick="document.location='/index'">На главную</button>
+<button onclick="document.location='/index'">Main page</button>
 </body>
 </html>

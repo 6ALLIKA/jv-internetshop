@@ -31,12 +31,12 @@
         <tr>
             <td></td>
             <td>
-                <button type="submit">Зарегестрировать</button>
+                <button type="submit">Register</button>
             </td>
         </tr>
     </table>
 </form>
-<button onclick="document.location='/index'">На главную</button>
+<button onclick="document.location='/index'">Main page</button>
 
 </body>
 </html>
