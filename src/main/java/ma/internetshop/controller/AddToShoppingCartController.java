@@ -10,7 +10,7 @@ import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.service.ProductService;
 import ma.internetshop.service.ShoppingCartService;
 
-public class AddToCartController extends HttpServlet {
+public class AddToShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("ma.internetshop");
     private ProductService productService =
