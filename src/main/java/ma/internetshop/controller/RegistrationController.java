@@ -2,6 +2,7 @@ package ma.internetshop.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import ma.internetshop.model.User;
 import ma.internetshop.service.ShoppingCartService;
 import ma.internetshop.service.UserService;
 
+@WebServlet("/registration")
 public class RegistrationController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);

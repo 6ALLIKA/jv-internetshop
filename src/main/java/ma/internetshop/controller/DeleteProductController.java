@@ -2,12 +2,14 @@ package ma.internetshop.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ma.internetshop.lib.Injector;
 import ma.internetshop.service.ProductService;
 
+@WebServlet("/products/deleteproduct")
 public class DeleteProductController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private ProductService productService =
