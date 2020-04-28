@@ -1,6 +1,7 @@
 package ma.internetshop.controller;
 
 import java.io.IOException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.service.ProductService;
 import ma.internetshop.service.ShoppingCartService;
 
+@WebServlet("/products/addtoshoppingcart")
 public class AddProductToShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
