@@ -7,7 +7,6 @@
 <h1><a href="${pageContext.request.contextPath}/"><img src="https://logoeps.com/wp-content/uploads/2014/01/39023-
 amazon-pay-card-logo-icon-vector-icon-vector-eps.png"></a></h1>
 
-<h4 style="color: chocolate">${message}</h4>
 <h2>Admin panel</h2>
 <button onclick="document.location='users/all'">All users</button>
 <button onclick="document.location='/products/add'">Add product</button>

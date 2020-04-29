@@ -14,6 +14,7 @@ import ma.internetshop.service.ShoppingCartService;
 @WebServlet("/shoppingcart/createorder")
 public class CreateOrderFromShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
+    private static Long orderId = 1L;
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
@@ -25,7 +26,7 @@ public class CreateOrderFromShoppingCartController extends HttpServlet {
             throws ServletException, IOException {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         orderService.completeOrder(shoppingCart);
-        req.setAttribute("message", "Your order successfully created");
-        req.getRequestDispatcher("/WEB-INF/views/index.jsp").include(req, resp);
+        req.setAttribute("message", "Your order " + orderId++ * 3 + " successfully created");
+        req.getRequestDispatcher("/WEB-INF/views/orders/userorderinfo.jsp").include(req, resp);
     }
 }
