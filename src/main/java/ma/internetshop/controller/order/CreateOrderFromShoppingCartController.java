@@ -2,6 +2,7 @@ package ma.internetshop.controller.order;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,6 @@ public class CreateOrderFromShoppingCartController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         orderService.completeOrder(shoppingCart);
         req.setAttribute("message", "Your order successfully created");
-        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
-        resp.sendRedirect(req.getContextPath() + "/");
+        req.getRequestDispatcher("/WEB-INF/views/index.jsp").include(req, resp);
     }
 }
