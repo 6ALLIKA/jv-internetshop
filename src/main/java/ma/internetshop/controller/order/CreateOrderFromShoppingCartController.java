@@ -14,8 +14,8 @@ import ma.internetshop.service.ShoppingCartService;
 @WebServlet("/shoppingcart/createorder")
 public class CreateOrderFromShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
-    private static Long orderId = 1L;
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
+    private static Long orderId = 1L;
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
     private OrderService orderService =
