@@ -1,6 +1,7 @@
 package ma.internetshop.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import ma.internetshop.dao.UserDao;
 import ma.internetshop.lib.Inject;
 import ma.internetshop.lib.Service;
@@ -35,5 +36,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean delete(Long id) {
         return userDao.delete(id);
+    }
+
+    @Override
+    public User getByLogin(String login) {
+        return userDao.getByLogin(login).get();
     }
 }

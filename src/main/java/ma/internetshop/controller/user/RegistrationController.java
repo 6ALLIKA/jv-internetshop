@@ -12,7 +12,7 @@ import ma.internetshop.model.User;
 import ma.internetshop.service.ShoppingCartService;
 import ma.internetshop.service.UserService;
 
-@WebServlet("/registration")
+@WebServlet("/users/registration")
 public class RegistrationController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
@@ -22,7 +22,7 @@ public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class RegistrationController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
             req.setAttribute("message", "Your repeat password is wrong");
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
         }
     }
 }
