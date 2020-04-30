@@ -6,7 +6,7 @@
 <body>
 <h2>Login to your account</h2>
 <h4 style="color: crimson">${message}</h4>
-<form method="post" action="${pageContext.request.contextPath}users/login">
+<form method="post" action="${pageContext.request.contextPath}login">
     <table border="1">
         <tr>
             <td>Login:</td>

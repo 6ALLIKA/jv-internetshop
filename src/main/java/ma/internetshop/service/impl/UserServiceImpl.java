@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByLogin(String login) {
-        return userDao.getByLogin(login).get();
+    public Optional<User> getByLogin(String login) {
+        return userDao.getByLogin(login);
     }
 }
