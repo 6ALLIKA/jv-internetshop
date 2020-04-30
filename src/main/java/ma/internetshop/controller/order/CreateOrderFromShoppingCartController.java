@@ -1,31 +1,32 @@
-package ma.internetshop.controller;
+package ma.internetshop.controller.order;
 
 import java.io.IOException;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ma.internetshop.lib.Injector;
-import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
-import ma.internetshop.service.ProductService;
+import ma.internetshop.service.OrderService;
 import ma.internetshop.service.ShoppingCartService;
 
-@WebServlet("/products/addtoshoppingcart")
-public class AddProductToShoppingCartController extends HttpServlet {
+@WebServlet("/shoppingcart/createorder")
+public class CreateOrderFromShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
-    private ProductService productService =
-            (ProductService) INJECTOR.getInstance(ProductService.class);
+    private static Long orderId = 1L;
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
+    private OrderService orderService =
+            (OrderService) INJECTOR.getInstance(OrderService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws ServletException, IOException {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
-        Product product = productService.get(Long.parseLong(req.getParameter("id")));
-        shoppingCartService.addProduct(shoppingCart, product);
-        resp.sendRedirect(req.getContextPath() + "/products/all");
+        orderService.completeOrder(shoppingCart);
+        req.setAttribute("message", "Your order " + orderId++ * 3 + " successfully created");
+        req.getRequestDispatcher("/WEB-INF/views/orders/userorderinfo.jsp").include(req, resp);
     }
 }

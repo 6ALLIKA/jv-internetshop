@@ -1,7 +1,8 @@
-package ma.internetshop.controller;
+package ma.internetshop.controller.product;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,9 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        List<Product> allProducts = productService.getAll();
+
+        req.setAttribute("products", allProducts);
         req.getRequestDispatcher("/WEB-INF/views/products/add.jsp").forward(req, resp);
     }
 

@@ -2,18 +2,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All products</title>
+    <title>Details in order</title>
 </head>
 <body>
-<h1>All products</h1>
+<h4>Details from order</h4>
+
+<h3>Order ID= ${order.id}</h3>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Add to cart</th>
     </tr>
-    <c:forEach var="product" items="${products}">
+    <c:forEach var="product" items="${order.products}">
         <tr>
             <td>
                 <c:out value="${product.id}"/>
@@ -23,9 +24,6 @@
             </td>
             <td>
                 <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <button onclick="document.location='addtoshoppingcart?id=${product.id}'">Buy</button>
             </td>
         </tr>
     </c:forEach>

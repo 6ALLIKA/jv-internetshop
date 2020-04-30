@@ -23,8 +23,16 @@
             <td>
                 <c:out value="${product.price}"/>
             </td>
+            <td>
+                <button onclick="document.location='/shoppingcart/delete?id=${product.id}'">Delete</button>
+            </td>
         </tr>
     </c:forEach>
+    <tr>
+        <td>
+            <button onclick="document.location='/shoppingcart/createorder'">Create order</button>
+        </td>
+    </tr>
 </table>
     <button onclick="document.location='/index'">Main page</button>
 </body>
