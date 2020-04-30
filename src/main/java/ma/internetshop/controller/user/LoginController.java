@@ -15,7 +15,8 @@ import ma.internetshop.security.AuthenticationService;
 @WebServlet("/users/login")
 public class LoginController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
-    private AuthenticationService authenticationService = (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
+    private AuthenticationService authenticationService
+            = (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
