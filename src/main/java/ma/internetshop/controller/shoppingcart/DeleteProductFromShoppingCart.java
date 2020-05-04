@@ -12,7 +12,7 @@ import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.service.ProductService;
 import ma.internetshop.service.ShoppingCartService;
 
-@WebServlet("/shoppingcart/delete")
+@WebServlet("/shoppingcart/products/delete")
 public class DeleteProductFromShoppingCart extends HttpServlet {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");

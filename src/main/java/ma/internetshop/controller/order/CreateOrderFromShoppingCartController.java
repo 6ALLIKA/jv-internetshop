@@ -11,7 +11,7 @@ import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.service.OrderService;
 import ma.internetshop.service.ShoppingCartService;
 
-@WebServlet("/shoppingcart/createorder")
+@WebServlet("/orders/create")
 public class CreateOrderFromShoppingCartController extends HttpServlet {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");

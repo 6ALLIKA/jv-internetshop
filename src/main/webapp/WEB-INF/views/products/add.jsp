@@ -45,7 +45,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <button onclick="document.location='deleteproduct?id=${product.id}'">Delete</button>
+                <button onclick="document.location='delete?id=${product.id}'">Delete</button>
             </td>
         </tr>
     </c:forEach>
