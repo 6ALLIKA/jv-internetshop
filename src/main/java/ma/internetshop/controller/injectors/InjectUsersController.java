@@ -1,12 +1,14 @@
 package ma.internetshop.controller.injectors;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ma.internetshop.lib.Injector;
+import ma.internetshop.model.Role;
 import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.model.User;
 import ma.internetshop.service.ShoppingCartService;
@@ -23,13 +25,22 @@ public class InjectUsersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        User admin = new User("admin", "admin", "admin");
+        admin.setRoles(List.of(Role.of("ADMIN")));
         User user = new User("user", "1", "1");
-        User user1 = new User("user1", "2", "1");
-        User user2 = new User("user2", "3", "1");
-        User user3 = new User("user3", "4", "1");
-        User user4 = new User("user4", "5", "1");
-        User user5 = new User("user5", "6", "1");
+        user.setRoles(List.of(Role.of("USER")));
+        User user1 = new User("user1", "2", "2");
+        user1.setRoles(List.of(Role.of("USER")));
+        User user2 = new User("user2", "3", "3");
+        user2.setRoles(List.of(Role.of("USER")));
+        User user3 = new User("user3", "4", "4");
+        user3.setRoles(List.of(Role.of("USER")));
+        User user4 = new User("user4", "5", "5");
+        user4.setRoles(List.of(Role.of("USER")));
+        User user5 = new User("user5", "6", "6");
+        user5.setRoles(List.of(Role.of("USER")));
 
+        userService.create(admin);
         userService.create(user);
         userService.create(user1);
         userService.create(user2);

@@ -25,6 +25,7 @@
     </table>
 </form>
 <button onclick="document.location='/users/registration'">Register</button>
+<button onclick="document.location='/index'">Main page</button>
 
 </body>
 </html>

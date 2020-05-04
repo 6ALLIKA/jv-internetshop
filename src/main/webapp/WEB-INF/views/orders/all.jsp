@@ -6,6 +6,21 @@
 </head>
 <body>
 <h2>All orders page</h2>
+<h4>Search orders by user id</h4>
+<form method="post" action="${pageContext.request.contextPath}byUser">
+    <table border="1">
+        <tr>
+            <td>UserID:</td>
+            <td><input type="number" name="id"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit">Search</button>
+            </td>
+        </tr>
+    </table>
+</form>
 
 <table border="1">
     <tr>

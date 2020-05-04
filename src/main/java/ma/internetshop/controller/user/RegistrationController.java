@@ -1,12 +1,14 @@
 package ma.internetshop.controller.user;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ma.internetshop.lib.Injector;
+import ma.internetshop.model.Role;
 import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.model.User;
 import ma.internetshop.service.ShoppingCartService;
@@ -35,6 +37,7 @@ public class RegistrationController extends HttpServlet {
 
         if (password.equals(repPassword)) {
             User user = new User(name, login, password);
+            user.setRoles(List.of(Role.of("USER")));
             userService.create(user);
             ShoppingCart shoppingCart = new ShoppingCart(user);
             shoppingCartService.create(shoppingCart);
