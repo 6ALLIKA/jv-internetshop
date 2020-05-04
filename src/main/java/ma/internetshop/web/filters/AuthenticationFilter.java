@@ -15,7 +15,7 @@ import ma.internetshop.lib.Injector;
 import ma.internetshop.service.UserService;
 
 public class AuthenticationFilter implements Filter {
-    private static final String USER_Id = "user_id";
+    private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private List<String> excludedUrls;
@@ -32,24 +32,20 @@ public class AuthenticationFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-
         String url = req.getServletPath();
         if (excludedUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }
-
-        Long userId = (Long) req.getSession().getAttribute(USER_Id);
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
         if (userId == null || userService.get(userId) == null) {
             resp.sendRedirect(req.getContextPath() + "/users/login");
             return;
         }
-
         filterChain.doFilter(req, resp);
     }
 
     @Override
     public void destroy() {
-
     }
 }

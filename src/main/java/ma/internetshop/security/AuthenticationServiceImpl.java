@@ -17,11 +17,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User userFromDB
                 = userService
                 .getByLogin(login)
-                .orElseThrow(() -> new AuthenticationException("Incorrect username or passport"));
+                .orElseThrow(() -> new AuthenticationException("Incorrect username or password"));
 
         if (userFromDB.getPassword().equals(password)) {
             return userFromDB;
         }
-        throw new AuthenticationException("Incorrect username or passport");
+        throw new AuthenticationException("Incorrect username or password");
     }
 }
