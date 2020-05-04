@@ -12,9 +12,9 @@ import ma.internetshop.model.ShoppingCart;
 import ma.internetshop.service.ProductService;
 import ma.internetshop.service.ShoppingCartService;
 
-@WebServlet("/shoppingcart/delete")
+@WebServlet("/shoppingcart/products/delete")
 public class DeleteProductFromShoppingCart extends HttpServlet {
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
@@ -28,7 +28,8 @@ public class DeleteProductFromShoppingCart extends HttpServlet {
         Long id = Long.valueOf(productId);
 
         Product product = productService.get(id);
-        ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         shoppingCartService.deleteProduct(shoppingCart, product);
 
         resp.sendRedirect(req.getContextPath() + "/shoppingcart");

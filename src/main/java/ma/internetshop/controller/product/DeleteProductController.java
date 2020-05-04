@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import ma.internetshop.lib.Injector;
 import ma.internetshop.service.ProductService;
 
-@WebServlet("/products/deleteproduct")
+@WebServlet("/products/delete")
 public class DeleteProductController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private ProductService productService =
