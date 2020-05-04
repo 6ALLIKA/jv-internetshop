@@ -25,7 +25,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <button onclick="document.location='/products/shoppingcart/add?id=${product.id}'">Buy</button>
+                <button onclick="document.location='/shoppingcart/products/add?id=${product.id}'">Buy</button>
             </td>
         </tr>
     </c:forEach>
