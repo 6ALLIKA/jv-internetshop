@@ -20,12 +20,12 @@ public class InjectProductsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Product product = new Product("Item", new BigDecimal(100));
-        Product product1 = new Product("Item1", new BigDecimal(100));
-        Product product2 = new Product("Item2", new BigDecimal(100));
-        Product product3 = new Product("Item3", new BigDecimal(100));
-        Product product4 = new Product("Item4", new BigDecimal(100));
-        Product product5 = new Product("Item5", new BigDecimal(100));
+        Product product = new Product("TINTIN A", new BigDecimal(10000));
+        Product product1 = new Product("TINTIN B", new BigDecimal(15000));
+        Product product2 = new Product("Starlink", new BigDecimal(30000));
+        Product product3 = new Product("Starlink-1", new BigDecimal(30000));
+        Product product4 = new Product("Starlink-2", new BigDecimal(30000));
+        Product product5 = new Product("Starlink-3", new BigDecimal(30000));
 
         productService.create(product);
         productService.create(product1);

@@ -9,7 +9,7 @@
         <filter-class>ma.internetshop.web.filters.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>excludeUrls</param-name>
-            <param-value>/,/index,/products/all,/users/login,/users/registration</param-value>
+            <param-value>/,/index,/products/all,/users/login,/users/registration,/index/injectusers,/index/injectproducts</param-value>
         </init-param>
     </filter>
     <filter-mapping>
