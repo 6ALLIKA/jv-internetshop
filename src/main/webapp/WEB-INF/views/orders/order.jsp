@@ -7,10 +7,10 @@
 <body>
 <h4>Details from order</h4>
 
-<h3>Order ID= ${order.id}</h3>
+<h3>Order ID= ${order.id * 3}</h3>
 <table border="1">
     <tr>
-        <th>ID</th>
+        <th>ProductID</th>
         <th>Name</th>
         <th>Price</th>
     </tr>
