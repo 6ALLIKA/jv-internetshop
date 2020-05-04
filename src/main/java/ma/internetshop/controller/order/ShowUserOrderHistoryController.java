@@ -13,7 +13,7 @@ import ma.internetshop.model.User;
 import ma.internetshop.service.OrderService;
 import ma.internetshop.service.UserService;
 
-@WebServlet("/order/history")
+@WebServlet("/orders/history")
 public class ShowUserOrderHistoryController extends HttpServlet {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
