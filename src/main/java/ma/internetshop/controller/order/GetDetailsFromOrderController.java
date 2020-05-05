@@ -17,6 +17,14 @@ public class GetDetailsFromOrderController extends HttpServlet {
             (OrderService) INJECTOR.getInstance(OrderService.class);
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long id = Long.valueOf(req.getParameter("id"));
+        Order order = orderService.get(id);
+        req.setAttribute("order", order);
+        req.getRequestDispatcher("/WEB-INF/views/orders/order.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long id = Long.valueOf(req.getParameter("id"));

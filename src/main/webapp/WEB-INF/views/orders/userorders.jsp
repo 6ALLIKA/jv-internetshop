@@ -18,7 +18,9 @@
                 <c:out value="${order.id * 3}"/>
             </td>
             <td>
-                <button onclick="document.location='/orders/details?id=${order.id}'">Look inside</button>
+                <form method="post" action="${pageContext.request.contextPath}details">
+                <button type="submit" name="id" value="${order.id}">Look inside</button>
+                </form>
             </td>
         </tr>
     </c:forEach>
