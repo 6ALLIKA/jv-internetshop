@@ -22,11 +22,11 @@
         <filter-class>ma.internetshop.web.filters.AuthorizationFilter</filter-class>
         <init-param>
             <param-name>adminUrls</param-name>
-            <param-value>/products/add,/products/delete,/users/all,/users/delete,/orders/all,/orders/delete,/orders/byUser</param-value>
+            <param-value>/products/add,/products/delete,/users/all,/users/delete,/orders/all,/orders/delete,/orders/byUser,/orders/details</param-value>
         </init-param>
         <init-param>
             <param-name>userUrls</param-name>
-            <param-value>/shoppingcart/*,/orders/history,/orders/create</param-value>
+            <param-value>/shoppingcart/*,/orders/history,/orders/create,/orders/details</param-value>
         </init-param>
     </filter>
     <filter-mapping>
