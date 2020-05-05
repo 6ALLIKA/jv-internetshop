@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -22,7 +23,7 @@ public class AuthorizationFilter implements Filter {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
-    private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
+    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
     private List<String> adminUrls;
     private List<String> userUrls;
 
@@ -33,10 +34,10 @@ public class AuthorizationFilter implements Filter {
         String userPattern = filterConfig.getInitParameter("userUrls");
         userUrls = Arrays.asList(userPattern.split(","));
         for (String adminUrl : adminUrls) {
-            protectedUrls.put(adminUrl, List.of(Role.RoleName.ADMIN));
+            protectedUrls.put(adminUrl, Set.of(Role.RoleName.ADMIN));
         }
         for (String userUrl : userUrls) {
-            protectedUrls.put(userUrl, List.of(Role.RoleName.USER));
+            protectedUrls.put(userUrl, Set.of(Role.RoleName.USER));
         }
     }
 
@@ -69,7 +70,7 @@ public class AuthorizationFilter implements Filter {
 
     }
 
-    private boolean isAuthorized(User user, List<Role.RoleName> authorizedRoles) {
+    private boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {
         for (Role.RoleName authorizedRole : authorizedRoles) {
             for (Role userRole : user.getRoles()) {
                 if (authorizedRole.equals(userRole.getRoleName())) {
