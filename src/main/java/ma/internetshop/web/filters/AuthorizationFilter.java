@@ -24,15 +24,13 @@ public class AuthorizationFilter implements Filter {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
-    private List<String> adminUrls;
-    private List<String> userUrls;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String adminPattern = filterConfig.getInitParameter("adminUrls");
-        adminUrls = Arrays.asList(adminPattern.split(","));
+        List<String> adminUrls = Arrays.asList(adminPattern.split(","));
         String userPattern = filterConfig.getInitParameter("userUrls");
-        userUrls = Arrays.asList(userPattern.split(","));
+        List<String> userUrls = Arrays.asList(userPattern.split(","));
         for (String adminUrl : adminUrls) {
             protectedUrls.put(adminUrl, Set.of(Role.RoleName.ADMIN));
         }
