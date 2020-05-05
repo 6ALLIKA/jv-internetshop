@@ -19,6 +19,7 @@
 <h2>User panel</h2>
 <button onclick="document.location='/users/registration'">Registration</button>
 <button onclick="document.location='/users/login'">Login</button>
+<button onclick="document.location='/users/logout'">Logout</button>
 <button onclick="document.location='/products/all'">All products</button>
 <button onclick="document.location='/orders/history'">My orders</button>
 <button onclick="document.location='/shoppingcart'">ShoppingCart</button>
