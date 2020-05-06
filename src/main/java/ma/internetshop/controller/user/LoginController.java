@@ -19,7 +19,7 @@ public class LoginController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private AuthenticationService authenticationService
-            = (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
+            = (AuthenticationService) INJECTOR.getInstance(LoginController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
