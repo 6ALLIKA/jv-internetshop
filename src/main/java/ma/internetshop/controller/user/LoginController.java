@@ -16,10 +16,10 @@ import org.apache.log4j.Logger;
 
 @WebServlet("/users/login")
 public class LoginController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class);
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private AuthenticationService authenticationService
-            = (AuthenticationService) INJECTOR.getInstance(LoginController.class);
+            = (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
         } catch (AuthenticationException e) {
-            LOGGER.info("Unsuccessful login");
+            LOGGER.warn("Unsuccessful login");
             req.setAttribute("message", e.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/users/login.jsp").forward(req, resp);
             return;
