@@ -11,7 +11,6 @@ import ma.internetshop.exceptions.AuthenticationException;
 import ma.internetshop.lib.Injector;
 import ma.internetshop.model.User;
 import ma.internetshop.security.AuthenticationService;
-import ma.internetshop.web.filters.AuthorizationFilter;
 import org.apache.log4j.Logger;
 
 @WebServlet("/users/login")
