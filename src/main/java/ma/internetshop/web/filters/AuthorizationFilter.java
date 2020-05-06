@@ -18,8 +18,10 @@ import ma.internetshop.lib.Injector;
 import ma.internetshop.model.Role;
 import ma.internetshop.model.User;
 import ma.internetshop.service.UserService;
+import org.apache.log4j.Logger;
 
 public class AuthorizationFilter implements Filter {
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
@@ -58,6 +60,7 @@ public class AuthorizationFilter implements Filter {
             filterChain.doFilter(req, resp);
             return;
         } else {
+            LOGGER.warn("User with ID#" + userId + " try to access on link: " + requestedUrl);
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
             return;
         }
