@@ -5,10 +5,8 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import ma.internetshop.dao.ProductDao;
 import ma.internetshop.db.Storage;
-import ma.internetshop.lib.Dao;
 import ma.internetshop.model.Product;
 
-@Dao
 public class ProductDaoImpl implements ProductDao {
     private static long count = 0;
 

@@ -26,13 +26,15 @@ public class InjectProductsController extends HttpServlet {
         Product product3 = new Product("Starlink-1", new BigDecimal(30000));
         Product product4 = new Product("Starlink-2", new BigDecimal(30000));
         Product product5 = new Product("Starlink-3", new BigDecimal(30000));
-
+        Product updateTest = new Product("update", new BigDecimal(30));
+        updateTest.setId(6L);
         productService.create(product);
         productService.create(product1);
         productService.create(product2);
         productService.create(product3);
         productService.create(product4);
         productService.create(product5);
+        productService.update(updateTest);
 
         resp.sendRedirect(req.getContextPath() + "/");
     }
