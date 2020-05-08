@@ -5,4 +5,3 @@ CREATE TABLE `internet_shop`.`products` (
   `product_price` DECIMAL(25,2) NOT NULL,
   PRIMARY KEY (`product_id`),
   UNIQUE INDEX `product_name_UNIQUE` (`product_name` ASC) VISIBLE);
-INSERT INTO `internet_shop`.`products` (`product_name`, `product_price`) VALUES ('TINTIN A', '10000');
