@@ -32,10 +32,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setBigDecimal(2, element.getPrice());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
-            while (resultSet.next()) {
-                Long productId = resultSet.getLong(ID_COLUMN);
-                element.setId(productId);
-            }
+            resultSet.next();
+            Long productId = resultSet.getLong(ID_COLUMN);
+            element.setId(productId);
+            LOGGER.info("Successful INSERT product in mySQL with ID " + productId);
             return element;
         } catch (SQLException ex) {
             LOGGER.error("Can't INSERT product in mySQL internet_shop", ex);
@@ -50,16 +50,20 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            String productName = resultSet.getString("product_name");
-            BigDecimal productPrice = resultSet.getBigDecimal("product_price");
-            Product product = new Product(productName, productPrice);
-            product.setId(id);
-            return Optional.of(product);
+            if (!resultSet.next()) {
+                return Optional.empty();
+            } else {
+                String productName = resultSet.getString("product_name");
+                BigDecimal productPrice = resultSet.getBigDecimal("product_price");
+                Product product = new Product(productName, productPrice);
+                product.setId(id);
+                return Optional.of(product);
+            }
         } catch (SQLException ex) {
             LOGGER.error("Can't FIND product by ID "
-                    + id + "in mySQL", ex);
+                    + id + " in mySQL", ex);
             throw new DataProcessingException("Can't FIND product by ID "
-                    + id + "in mySQL internet_shop", ex);
+                    + id + " in mySQL internet_shop", ex);
         }
     }
 
@@ -117,6 +121,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.execute();
+            LOGGER.info("Successful DELETE product in mySQL with ID " + id);
             return true;
         } catch (SQLException ex) {
             LOGGER.error("Can't DELETE product by ID " + id
