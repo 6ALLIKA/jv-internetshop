@@ -113,7 +113,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            statement.execute();
+            statement.executeUpdate();
             LOGGER.info("Successful DELETE product in mySQL with ID " + id);
             return true;
         } catch (SQLException ex) {
