@@ -53,10 +53,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (!resultSet.next()) {
                 return Optional.empty();
             } else {
-                String productName = resultSet.getString("product_name");
-                BigDecimal productPrice = resultSet.getBigDecimal("product_price");
-                Product product = new Product(productName, productPrice);
-                product.setId(id);
+                Product product = getProductFromResultSet(resultSet);
                 return Optional.of(product);
             }
         } catch (SQLException ex) {
@@ -76,11 +73,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             List<Product> products = new ArrayList<>();
             Product product;
             while (resultSet.next()) {
-                Long productId = resultSet.getLong("product_id");
-                String productName = resultSet.getString("product_name");
-                BigDecimal productPrice = resultSet.getBigDecimal("product_price");
-                product = new Product(productName, productPrice);
-                product.setId(productId);
+                product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
             return products;
@@ -129,5 +122,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
             throw new DataProcessingException("Can't DELETE product by ID " + id
                     + "in mySQL internet_shop", ex);
         }
+    }
+
+    private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
+        Long id = resultSet.getLong("product_id");
+        String name = resultSet.getString("product_name");
+        BigDecimal price = resultSet.getBigDecimal("product_price");
+        Product product = new Product(name, price);
+        product.setId(id);
+        return product;
     }
 }
