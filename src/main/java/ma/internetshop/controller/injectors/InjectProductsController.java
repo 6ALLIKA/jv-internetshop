@@ -34,6 +34,10 @@ public class InjectProductsController extends HttpServlet {
         productService.create(product4);
         productService.create(product5);
 
+        Product updateTest = new Product("update", new BigDecimal(30));
+        updateTest.setId(6L);
+        productService.update(updateTest);
+
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }
