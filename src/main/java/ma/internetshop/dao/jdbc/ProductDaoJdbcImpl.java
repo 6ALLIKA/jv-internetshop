@@ -71,9 +71,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             List<Product> products = new ArrayList<>();
-            Product product;
             while (resultSet.next()) {
-                product = getProductFromResultSet(resultSet);
+                Product product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
             return products;
