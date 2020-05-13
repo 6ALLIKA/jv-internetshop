@@ -15,15 +15,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        boolean isExist = shoppingCartDao.getAll().stream()
-                .anyMatch(cart -> cart.getId().equals(shoppingCart.getId()));
-        if (!isExist) {
-            shoppingCartDao.create(shoppingCart);
-        }
-        shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get()
-                .getProducts().add(product);
-        return shoppingCartDao.update(shoppingCartDao
-                .getByUserId(shoppingCart.getUser().getId()).get());
+        shoppingCart.getProducts().add(product);
+        return shoppingCartDao.update(shoppingCart);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long id) {
-        String query = "SELECT * FROM products WHERE product_id=?;";
+        String query = "SELECT * FROM products WHERE product_id = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
@@ -112,9 +112,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            statement.executeUpdate();
-            LOGGER.info("Successful DELETE product in mySQL with ID " + id);
-            return true;
+            int resultSet = statement.executeUpdate();
+            return resultSet != 0;
         } catch (SQLException ex) {
             LOGGER.error("Can't DELETE product by ID " + id
                     + "in mySQL internet_shop", ex);

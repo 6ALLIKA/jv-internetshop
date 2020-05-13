@@ -58,4 +58,9 @@ public class OrderServiceImpl implements OrderService {
     public boolean delete(Long id) {
         return orderDao.delete(id);
     }
+
+    @Override
+    public boolean deleteProduct(Long id) {
+        return orderDao.deleteProductFromOrder(id);
+    }
 }
