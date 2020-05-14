@@ -24,7 +24,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         if (getAllProducts(shoppingCart)
                 .removeIf(prod -> prod.getId().equals(product.getId()))) {
             shoppingCartDao
-                    .update(shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get());
+                    .update(shoppingCartDao.getByUserId(shoppingCart.getUserId()).get());
             return true;
         }
         return false;
@@ -69,6 +69,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public List<Product> getAllProducts(ShoppingCart shoppingCart) {
         return shoppingCartDao
-                .getByUserId(shoppingCart.getUser().getId()).get().getProducts();
+                .getByUserId(shoppingCart.getUserId()).get().getProducts();
     }
 }

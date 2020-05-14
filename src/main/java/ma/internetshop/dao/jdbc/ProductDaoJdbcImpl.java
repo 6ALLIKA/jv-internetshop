@@ -105,8 +105,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            int resultSet = statement.executeUpdate();
-            return resultSet != 0;
+            int numberOfRowsDeleted = statement.executeUpdate();
+            return numberOfRowsDeleted != 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't DELETE product by ID " + id
                     + "in mySQL internet_shop", ex);

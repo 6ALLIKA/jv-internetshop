@@ -13,7 +13,6 @@ import ma.internetshop.exceptions.DataProcessingException;
 import ma.internetshop.lib.Dao;
 import ma.internetshop.model.Product;
 import ma.internetshop.model.ShoppingCart;
-import ma.internetshop.model.User;
 import ma.internetshop.util.ConnectionUtil;
 import org.apache.log4j.Logger;
 
@@ -46,7 +45,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-            statement.setLong(1, element.getUser().getId());
+            statement.setLong(1, element.getUserId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -102,7 +101,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 + "WHERE cart_id = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, element.getUser().getId());
+            statement.setLong(1, element.getUserId());
             statement.setLong(2, element.getId());
             statement.executeUpdate();
             deleteShoppingCartFromCartsProducts(element.getId());
@@ -172,32 +171,10 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private User getUserOfShoppingCart(Long userId) {
-        String query = "SELECT user_name, login, pass "
-                + "FROM shopping_carts INNER JOIN users "
-                + "ON shopping_carts.user_id = users.user_id "
-                + "WHERE shopping_carts.user_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, userId);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            String userName = resultSet.getString("user_name");
-            String userLogin = resultSet.getString("login");
-            String userPass = resultSet.getString("pass");
-            User user = new User(userName, userLogin, userPass);
-            user.setId(userId);
-            return user;
-        } catch (SQLException ex) {
-            throw new DataProcessingException("Can't FIND user from shopping cart by ID "
-                    + userId + " in mySQL internet_shop", ex);
-        }
-    }
-
     private ShoppingCart getShoppingCartFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("cart_id");
         Long userId = resultSet.getLong("user_id");
-        ShoppingCart shoppingCart = new ShoppingCart(getUserOfShoppingCart(userId));
+        ShoppingCart shoppingCart = new ShoppingCart(userId);
         shoppingCart.setId(id);
         return shoppingCart;
     }

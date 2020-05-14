@@ -14,7 +14,6 @@ import ma.internetshop.exceptions.DataProcessingException;
 import ma.internetshop.lib.Dao;
 import ma.internetshop.model.Order;
 import ma.internetshop.model.Product;
-import ma.internetshop.model.User;
 import ma.internetshop.util.ConnectionUtil;
 import org.apache.log4j.Logger;
 
@@ -29,7 +28,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setLong(1, element.getUser().getId());
+            statement.setLong(1, element.getUserId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -82,7 +81,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 + "WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, element.getUser().getId());
+            statement.setLong(1, element.getUserId());
             statement.setLong(2, element.getId());
             statement.executeUpdate();
             deleteOrderFromOrdersProducts(element.getId());
@@ -112,8 +111,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             deleteOrderFromOrdersProducts(id);
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            int resultSet = statement.executeUpdate();
-            return resultSet != 0;
+            int numberOfRowsDeleted = statement.executeUpdate();
+            return numberOfRowsDeleted != 0;
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't DELETE order in mySQL with ID " + id, ex);
         }
@@ -122,7 +121,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private Order getCopyOfOrder(ResultSet resultSet) throws SQLException {
         Long orderId = resultSet.getLong("order_id");
         Long userId = resultSet.getLong("user_id");
-        return new Order(orderId, getProductsOfOrder(orderId), getUserOfOrder(userId));
+        return new Order(orderId, getProductsOfOrder(orderId), userId);
     }
 
     private List<Product> getProductsOfOrder(Long orderId) {
@@ -145,28 +144,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't FIND user from order by ID "
                     + orderId + " in mySQL internet_shop", ex);
-        }
-    }
-
-    private User getUserOfOrder(Long userId) {
-        String query = "SELECT user_name, login, pass "
-                + "FROM orders INNER JOIN users "
-                + "ON orders.user_id = users.user_id "
-                + "WHERE orders.user_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, userId);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            String userName = resultSet.getString("user_name");
-            String userLogin = resultSet.getString("login");
-            String userPass = resultSet.getString("pass");
-            User user = new User(userName, userLogin, userPass);
-            user.setId(userId);
-            return user;
-        } catch (SQLException ex) {
-            throw new DataProcessingException("Can't FIND user from order by ID "
-                    + userId + " in mySQL internet_shop", ex);
         }
     }
 
