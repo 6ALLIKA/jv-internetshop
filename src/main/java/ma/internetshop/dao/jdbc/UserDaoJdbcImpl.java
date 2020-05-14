@@ -24,7 +24,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> getByLogin(String login) {
-        String query = "SELECT * FROM users WHERE user_login = ?;";
+        String query = "SELECT * FROM users WHERE login = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, login);
@@ -36,14 +36,13 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return Optional.empty();
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND user in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't FIND user in mySQL internet_shop", ex);
         }
     }
 
     @Override
     public User create(User element) {
-        String query = "INSERT INTO users (user_name, user_login, user_pass) VALUES (?, ?, ?);";
+        String query = "INSERT INTO users (user_name, login, pass) VALUES (?, ?, ?);";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query,
                     PreparedStatement.RETURN_GENERATED_KEYS);
@@ -59,7 +58,6 @@ public class UserDaoJdbcImpl implements UserDao {
             LOGGER.info("Successful INSERT user in mySQL with ID " + id);
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't INSERT user in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't INSERT user in mySQL internet_shop", ex);
         }
     }
@@ -78,7 +76,6 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return Optional.empty();
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND user in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't FIND user in mySQL internet_shop", ex);
         }
     }
@@ -97,14 +94,13 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return allUsers;
         } catch (SQLException ex) {
-            LOGGER.error("Can't SELECT users in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't SELECT users in mySQL internet_shop", ex);
         }
     }
 
     @Override
     public User update(User element) {
-        String query = "UPDATE users SET user_name = ?, user_login = ?, user_pass = ? "
+        String query = "UPDATE users SET user_name = ?, login = ?, pass = ? "
                 + "WHERE user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -118,7 +114,6 @@ public class UserDaoJdbcImpl implements UserDao {
             LOGGER.info("Shopping user with ID=" + element.getId() + " was UPDATED");
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't UPDATE user in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't UPDATE user in mySQL internet_shop", ex);
         }
     }
@@ -134,7 +129,6 @@ public class UserDaoJdbcImpl implements UserDao {
             LOGGER.info("User with id " + id + " was deleted.");
             return numberOfRowsDeleted != 0;
         } catch (SQLException ex) {
-            LOGGER.error("Can't DELETE user in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't DELETE user in mySQL internet_shop", ex);
         }
     }
@@ -161,8 +155,8 @@ public class UserDaoJdbcImpl implements UserDao {
     private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("user_id");
         String name = resultSet.getString("user_name");
-        String login = resultSet.getString("user_login");
-        String password = resultSet.getString("user_pass");
+        String login = resultSet.getString("login");
+        String password = resultSet.getString("pass");
         User user = new User(name, login, password);
         user.setId(id);
         return user;

@@ -39,7 +39,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             LOGGER.info("Successful INSERT order in mySQL with ID " + orderId);
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't INSERT order in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't INSERT order in mySQL internet_shop", ex);
         }
     }
@@ -56,8 +55,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return Optional.empty();
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND product by ID "
-                    + id + " in mySQL", ex);
             throw new DataProcessingException("Can't FIND product by ID "
                     + id + " in mySQL internet_shop", ex);
         }
@@ -75,7 +72,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return orders;
         } catch (SQLException ex) {
-            LOGGER.error("Can't SELECT orders in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't SELECT orders in mySQL internet_shop", ex);
         }
     }
@@ -94,9 +90,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             LOGGER.info("Order with ID=" + element.getId() + " was UPDATED");
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't UPDATE order by ID "
-                    + element.getId()
-                    + "in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't UPDATE order by ID "
                     + element.getId()
                     + "in mySQL internet_shop", ex);
@@ -122,7 +115,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             int resultSet = statement.executeUpdate();
             return resultSet != 0;
         } catch (SQLException ex) {
-            LOGGER.error("Can't DELETE order in mySQL with ID " + id, ex);
             throw new DataProcessingException("Can't DELETE order in mySQL with ID " + id, ex);
         }
     }
@@ -134,7 +126,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private List<Product> getProductsOfOrder(Long orderId) {
-        String query = "SELECT products.product_id, product_name, product_price  "
+        String query = "SELECT products.product_id, product_name, price  "
                 + "FROM orders_products INNER JOIN products "
                 + "ON orders_products.product_id = products.product_id "
                 + "WHERE orders_products.order_id = ?;";
@@ -146,20 +138,18 @@ public class OrderDaoJdbcImpl implements OrderDao {
             while (resultSet.next()) {
                 Long productId = resultSet.getLong("product_id");
                 String name = resultSet.getString("product_name");
-                BigDecimal price = resultSet.getBigDecimal("product_price");
+                BigDecimal price = resultSet.getBigDecimal("price");
                 products.add(new Product(productId, name, price));
             }
             return products;
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND user from order by ID "
-                    + orderId + " in mySQL", ex);
             throw new DataProcessingException("Can't FIND user from order by ID "
                     + orderId + " in mySQL internet_shop", ex);
         }
     }
 
     private User getUserOfOrder(Long userId) {
-        String query = "SELECT user_name, user_login, user_pass "
+        String query = "SELECT user_name, login, pass "
                 + "FROM orders INNER JOIN users "
                 + "ON orders.user_id = users.user_id "
                 + "WHERE orders.user_id = ?;";
@@ -169,14 +159,12 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             String userName = resultSet.getString("user_name");
-            String userLogin = resultSet.getString("user_login");
-            String userPass = resultSet.getString("user_pass");
+            String userLogin = resultSet.getString("login");
+            String userPass = resultSet.getString("pass");
             User user = new User(userName, userLogin, userPass);
             user.setId(userId);
             return user;
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND user from order by ID "
-                    + userId + " in mySQL", ex);
             throw new DataProcessingException("Can't FIND user from order by ID "
                     + userId + " in mySQL internet_shop", ex);
         }

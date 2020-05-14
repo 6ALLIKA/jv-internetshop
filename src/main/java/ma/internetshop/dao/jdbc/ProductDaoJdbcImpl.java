@@ -24,7 +24,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) {
         String query = "INSERT INTO products"
-                + " (product_name, product_price) VALUES (?, ?);";
+                + " (product_name, price) VALUES (?, ?);";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -38,7 +38,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             LOGGER.info("Successful INSERT product in mySQL with ID " + productId);
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't INSERT product in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't INSERT product in mySQL internet_shop", ex);
         }
     }
@@ -57,8 +56,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(product);
             }
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND product by ID "
-                    + id + " in mySQL", ex);
             throw new DataProcessingException("Can't FIND product by ID "
                     + id + " in mySQL internet_shop", ex);
         }
@@ -77,7 +74,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return products;
         } catch (SQLException ex) {
-            LOGGER.error("Can't GET products in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't GET products in mySQL internet_shop", ex);
         }
     }
@@ -85,7 +81,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product update(Product element) {
         String query = "UPDATE products "
-                + "SET product_name = ?, product_price = ? "
+                + "SET product_name = ?, price = ? "
                 + "WHERE product_id = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -96,9 +92,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             LOGGER.info("Product with ID=" + element.getId() + " was UPDATED");
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't UPDATE product by ID "
-                    + element.getId()
-                    + "in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't UPDATE product by ID "
                     + element.getId()
                     + "in mySQL internet_shop", ex);
@@ -115,8 +108,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             int resultSet = statement.executeUpdate();
             return resultSet != 0;
         } catch (SQLException ex) {
-            LOGGER.error("Can't DELETE product by ID " + id
-                    + "in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't DELETE product by ID " + id
                     + "in mySQL internet_shop", ex);
         }
@@ -125,7 +116,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("product_id");
         String name = resultSet.getString("product_name");
-        BigDecimal price = resultSet.getBigDecimal("product_price");
+        BigDecimal price = resultSet.getBigDecimal("price");
         Product product = new Product(name, price);
         product.setId(id);
         return product;

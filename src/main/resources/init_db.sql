@@ -4,7 +4,7 @@ CREATE TABLE `internet_shop`.`products`
 (
     `product_id`    BIGINT(11)     NOT NULL AUTO_INCREMENT,
     `product_name`  VARCHAR(256)   NOT NULL,
-    `product_price` DECIMAL(25, 2) NOT NULL,
+    `price` DECIMAL(25, 2) NOT NULL,
     PRIMARY KEY (`product_id`),
     UNIQUE INDEX `product_id_UNIQUE` (`product_id` ASC) VISIBLE,
     UNIQUE INDEX `product_name_UNIQUE` (`product_name` ASC) VISIBLE
@@ -14,11 +14,11 @@ CREATE TABLE `internet_shop`.`users`
 (
     `user_id`    BIGINT(11)   NOT NULL AUTO_INCREMENT,
     `user_name`  VARCHAR(256) NOT NULL,
-    `user_pass`  VARCHAR(256) NOT NULL,
-    `user_login` VARCHAR(256) NOT NULL,
+    `pass`  VARCHAR(256) NOT NULL,
+    `login` VARCHAR(256) NOT NULL,
     PRIMARY KEY (`user_id`),
     UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
-    UNIQUE INDEX `user_login_UNIQUE` (`user_login` ASC) VISIBLE
+    UNIQUE INDEX `user_login_UNIQUE` (`login` ASC) VISIBLE
 );
 
 CREATE TABLE `internet_shop`.`orders`

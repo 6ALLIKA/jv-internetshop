@@ -36,7 +36,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             return Optional.empty();
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND cart in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't FIND cart in mySQL internet_shop", ex);
         }
     }
@@ -57,7 +56,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             LOGGER.info("Successful INSERT cart in mySQL with ID " + cartId);
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't INSERT cart in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't INSERT cart in mySQL internet_shop", ex);
         }
     }
@@ -76,7 +74,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             return Optional.empty();
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND cart in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't FIND cart in mySQL internet_shop", ex);
         }
     }
@@ -95,7 +92,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             return allShoppingCarts;
         } catch (SQLException ex) {
-            LOGGER.error("Can't SELECT carts in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't SELECT carts in mySQL internet_shop", ex);
         }
     }
@@ -114,7 +110,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             LOGGER.info("Shopping cart with ID=" + element.getId() + " was UPDATED");
             return element;
         } catch (SQLException ex) {
-            LOGGER.error("Can't UPDATE cart in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't UPDATE cart in mySQL internet_shop", ex);
         }
     }
@@ -129,7 +124,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             int numberOfRowsDeleted = statement.executeUpdate();
             return numberOfRowsDeleted != 0;
         } catch (SQLException ex) {
-            LOGGER.error("Can't DELETE cart in mySQL internet_shop", ex);
             throw new DataProcessingException("Can't DELETE cart in mySQL internet_shop", ex);
         }
     }
@@ -169,7 +163,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             while (resultSet.next()) {
                 Long id = resultSet.getLong("product_id");
                 String name = resultSet.getString("product_name");
-                BigDecimal price = resultSet.getBigDecimal("product_price");
+                BigDecimal price = resultSet.getBigDecimal("price");
                 Product product = new Product(name, price);
                 product.setId(id);
                 products.add(product);
@@ -179,7 +173,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     }
 
     private User getUserOfShoppingCart(Long userId) {
-        String query = "SELECT user_name, user_login, user_pass "
+        String query = "SELECT user_name, login, pass "
                 + "FROM shopping_carts INNER JOIN users "
                 + "ON shopping_carts.user_id = users.user_id "
                 + "WHERE shopping_carts.user_id = ?;";
@@ -189,14 +183,12 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
             String userName = resultSet.getString("user_name");
-            String userLogin = resultSet.getString("user_login");
-            String userPass = resultSet.getString("user_pass");
+            String userLogin = resultSet.getString("login");
+            String userPass = resultSet.getString("pass");
             User user = new User(userName, userLogin, userPass);
             user.setId(userId);
             return user;
         } catch (SQLException ex) {
-            LOGGER.error("Can't FIND user from shopping cart by ID "
-                    + userId + " in mySQL", ex);
             throw new DataProcessingException("Can't FIND user from shopping cart by ID "
                     + userId + " in mySQL internet_shop", ex);
         }
