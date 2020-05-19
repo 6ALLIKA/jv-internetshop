@@ -5,10 +5,8 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import ma.internetshop.dao.OrderDao;
 import ma.internetshop.db.Storage;
-import ma.internetshop.lib.Dao;
 import ma.internetshop.model.Order;
 
-@Dao
 public class OrderDaoImpl implements OrderDao {
 
     @Override
@@ -41,5 +39,10 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public boolean delete(Long id) {
         return Storage.orders.removeIf(order -> order.getId().equals(id));
+    }
+
+    @Override
+    public boolean deleteProductFromOrder(Long id) {
+        return false;
     }
 }

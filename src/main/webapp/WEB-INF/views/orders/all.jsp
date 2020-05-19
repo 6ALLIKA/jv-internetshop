@@ -36,10 +36,7 @@
                 <c:out value="${order.id}"/>
             </td>
             <td>
-                <c:out value="${order.user.name}"/>
-            </td>
-            <td>
-                <c:out value="${order.user.id}"/>
+                <c:out value="${order.userId}"/>
             </td>
             <td>
                 <button onclick="document.location='details?id=${order.id}'">Look inside</button>

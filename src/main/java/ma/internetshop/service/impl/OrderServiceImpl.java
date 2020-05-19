@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
         Order order = create(new Order(new ArrayList<>(shoppingCart.getProducts()),
-                shoppingCart.getUser()));
+                shoppingCart.getUserId()));
         shoppingCartService.clear(shoppingCart);
         return order;
     }
@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getUserOrders(User user) {
         return orderDao.getAll().stream()
-                .filter(o -> o.getUser().getId().equals(user.getId()))
+                .filter(o -> o.getUserId().equals(user.getId()))
                 .collect(Collectors.toList());
     }
 
@@ -57,5 +57,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean delete(Long id) {
         return orderDao.delete(id);
+    }
+
+    @Override
+    public boolean deleteProduct(Long id) {
+        return orderDao.deleteProductFromOrder(id);
     }
 }

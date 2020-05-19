@@ -15,15 +15,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        boolean isExist = shoppingCartDao.getAll().stream()
-                .anyMatch(cart -> cart.getId().equals(shoppingCart.getId()));
-        if (!isExist) {
-            shoppingCartDao.create(shoppingCart);
-        }
-        shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get()
-                .getProducts().add(product);
-        return shoppingCartDao.update(shoppingCartDao
-                .getByUserId(shoppingCart.getUser().getId()).get());
+        shoppingCart.getProducts().add(product);
+        return shoppingCartDao.update(shoppingCart);
     }
 
     @Override
@@ -31,7 +24,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         if (getAllProducts(shoppingCart)
                 .removeIf(prod -> prod.getId().equals(product.getId()))) {
             shoppingCartDao
-                    .update(shoppingCartDao.getByUserId(shoppingCart.getUser().getId()).get());
+                    .update(shoppingCartDao.getByUserId(shoppingCart.getUserId()).get());
             return true;
         }
         return false;
@@ -76,6 +69,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public List<Product> getAllProducts(ShoppingCart shoppingCart) {
         return shoppingCartDao
-                .getByUserId(shoppingCart.getUser().getId()).get().getProducts();
+                .getByUserId(shoppingCart.getUserId()).get().getProducts();
     }
 }
