@@ -8,11 +8,20 @@ public class User {
     private String login;
     private String password;
     private Set<Role> roles;
+    private byte[] salt;
 
     public User(String name, String login, String password) {
         this.name = name;
         this.login = login;
         this.password = password;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     public Long getId() {

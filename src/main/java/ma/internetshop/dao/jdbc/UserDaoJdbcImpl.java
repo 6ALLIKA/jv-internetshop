@@ -42,13 +42,14 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User element) {
-        String query = "INSERT INTO users (user_name, login, pass) VALUES (?, ?, ?);";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
+        String query = "INSERT INTO users (user_name, login, pass, salt) "
+                + "VALUES (?, ?, ?, ?);";        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query,
                     PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
+            statement.setBytes(4, element.getSalt());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
@@ -100,14 +101,15 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User update(User element) {
-        String query = "UPDATE users SET user_name = ?, login = ?, pass = ? "
+        String query = "UPDATE users SET user_name = ?, login = ?, pass = ?, salt = ? "
                 + "WHERE user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, element.getName());
             statement.setString(2, element.getLogin());
             statement.setString(3, element.getPassword());
-            statement.setLong(4, element.getId());
+            statement.setBytes(4, element.getSalt());
+            statement.setLong(5, element.getId());
             statement.executeUpdate();
             deleteUserFromUsersRoles(element.getId());
             insertUsersRoles(element);
@@ -157,7 +159,9 @@ public class UserDaoJdbcImpl implements UserDao {
         String name = resultSet.getString("user_name");
         String login = resultSet.getString("login");
         String password = resultSet.getString("pass");
+        byte[] salt = resultSet.getBytes("salt");
         User user = new User(name, login, password);
+        user.setSalt(salt);
         user.setId(id);
         return user;
     }
