@@ -43,7 +43,8 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User create(User element) {
         String query = "INSERT INTO users (user_name, login, pass, salt) "
-                + "VALUES (?, ?, ?, ?);";        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
+                + "VALUES (?, ?, ?, ?);";
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             PreparedStatement statement = connection.prepareStatement(query,
                     PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getName());
