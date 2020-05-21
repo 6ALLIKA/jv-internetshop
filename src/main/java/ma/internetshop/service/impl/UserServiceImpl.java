@@ -7,6 +7,7 @@ import ma.internetshop.lib.Inject;
 import ma.internetshop.lib.Service;
 import ma.internetshop.model.User;
 import ma.internetshop.service.UserService;
+import ma.internetshop.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        byte[] salt = HashUtil.getSalt();
+        user.setPassword(HashUtil.hashPassword(user.getPassword(), salt));
+        user.setSalt(salt);
         return userDao.create(user);
     }
 
