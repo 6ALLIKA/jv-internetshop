@@ -7,7 +7,7 @@
 <body>
 <h4>Details from order</h4>
 
-<h3>Order ID= ${id * 3}</h3>
+<h3>Order ID= ${id}</h3>
 <table border="1">
     <tr>
         <th>ProductID</th>

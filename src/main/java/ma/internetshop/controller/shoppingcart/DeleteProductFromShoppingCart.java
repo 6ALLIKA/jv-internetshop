@@ -1,7 +1,6 @@
 package ma.internetshop.controller.shoppingcart;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,15 +22,13 @@ public class DeleteProductFromShoppingCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         String productId = req.getParameter("id");
         Long id = Long.valueOf(productId);
-
         Product product = productService.get(id);
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         shoppingCartService.deleteProduct(shoppingCart, product);
-
         resp.sendRedirect(req.getContextPath() + "/shoppingcart");
     }
 }

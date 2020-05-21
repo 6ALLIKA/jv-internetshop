@@ -19,7 +19,7 @@
                 <c:out value="${order.id * 3}"/>
             </td>
             <td>
-                <button onclick="document.location='/orders/details?id=${order.id}'">Look inside</button>
+                <button onclick="document.location='/orders/details?id=${order.id}'">Details</button>
             </td>
             <td>
                 <button onclick="document.location='delete?id=${order.id}'">Delete</button>
