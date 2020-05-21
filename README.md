@@ -59,6 +59,8 @@ Create your first user using registration form.
 
 There is no option to create user with ADMIN access rights, so you have to do that manually in database.
 
+Main page http://localhost:8080/
+
 ___
 
 ### <a name="authors"></a>Authors
