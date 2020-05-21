@@ -9,11 +9,10 @@
 
 <h2>Admin panel</h2>
 <button onclick="document.location='users/all'">All users</button>
-<button onclick="document.location='/products/add'">Add product</button>
+<button onclick="document.location='/products/add'">Product managment</button>
 <button onclick="document.location='/orders/all'">All orders</button>
 
 <h2>Injectors</h2>
-<button onclick="document.location='/index/injectusers'">Add users</button>
 <button onclick="document.location='/index/injectproducts'">Add products</button>
 
 <h2>User panel</h2>
