@@ -2,7 +2,6 @@ package ma.internetshop.controller.injectors;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ public class InjectProductsController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         Product product1 = new Product("TINTIN B", new BigDecimal(15000));
         Product product2 = new Product("Starlink", new BigDecimal(30000));
         Product product3 = new Product("Starlink-1", new BigDecimal(30000));
@@ -31,10 +30,6 @@ public class InjectProductsController extends HttpServlet {
         productService.create(product3);
         productService.create(product4);
         productService.create(product5);
-
-        Product updateTest = new Product("update", new BigDecimal(30));
-        updateTest.setId(6L);
-        productService.update(updateTest);
 
         resp.sendRedirect(req.getContextPath() + "/");
     }
