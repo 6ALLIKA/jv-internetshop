@@ -106,6 +106,24 @@ public class OrderDaoJdbcImpl implements OrderDao {
         return deleteById(id, query);
     }
 
+    @Override
+    public List<Order> getUserOrders(Long userId) {
+        String query = "SELECT * FROM orders WHERE user_id = ?;";
+        List<Order> userOrders = new ArrayList<>();
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                userOrders.add(getCopyOfOrder(resultSet));
+            }
+            return userOrders;
+        } catch (SQLException ex) {
+            throw new DataProcessingException("Can't FIND product by ID "
+                    + userId + " in mySQL internet_shop", ex);
+        }
+    }
+
     private boolean deleteById(Long id, String query) {
         try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
             deleteOrderFromOrdersProducts(id);

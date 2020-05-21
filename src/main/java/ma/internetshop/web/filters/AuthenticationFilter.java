@@ -11,13 +11,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ma.internetshop.lib.Injector;
-import ma.internetshop.service.UserService;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
-    private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private List<String> excludedUrls;
 
     @Override

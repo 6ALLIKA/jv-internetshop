@@ -2,7 +2,6 @@ package ma.internetshop.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import ma.internetshop.dao.OrderDao;
 import ma.internetshop.lib.Inject;
 import ma.internetshop.lib.Service;
@@ -29,9 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getUserOrders(User user) {
-        return orderDao.getAll().stream()
-                .filter(o -> o.getUserId().equals(user.getId()))
-                .collect(Collectors.toList());
+        return orderDao.getUserOrders(user.getId());
     }
 
     @Override

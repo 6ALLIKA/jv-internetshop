@@ -15,11 +15,11 @@
     <c:forEach var="order" items="${orders}">
         <tr>
             <td>
-                <c:out value="${order.id * 3}"/>
+                <c:out value="${order.id}"/>
             </td>
             <td>
                 <form method="post" action="${pageContext.request.contextPath}details">
-                <button type="submit" name="id" value="${order.id}">Look inside</button>
+                <button type="submit" name="id" value="${order.id}">Details</button>
                 </form>
             </td>
         </tr>

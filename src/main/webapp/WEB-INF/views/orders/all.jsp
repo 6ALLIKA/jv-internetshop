@@ -39,7 +39,7 @@
                 <c:out value="${order.userId}"/>
             </td>
             <td>
-                <button onclick="document.location='details?id=${order.id}'">Look inside</button>
+                <button onclick="document.location='details?id=${order.id}'">Details</button>
             </td>
             <td>
                 <button onclick="document.location='delete?id=${order.id}'">Delete</button>
