@@ -64,17 +64,5 @@ Main page http://localhost:8080/
 ___
 
 ### <a name="authors"></a>Authors
-[6ALLIKA](https://github.com/6ALLIKA)
+[Skorobohatyi Dmytro](https://github.com/6ALLIKA)
 
-___
-
-### Gratitude
-[Mate](https://mate.academy/ru)
-
-[boroda4436](https://github.com/boroda4436)
-
-[Sofasmile](https://github.com/Sofasmile)
-
-[RomanDubovskyi](https://github.com/RomanDubovskyi)
-
-[dmytro-hryhoruk](https://github.com/dmytro-hryhoruk)
