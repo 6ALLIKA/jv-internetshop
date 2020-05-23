@@ -13,7 +13,7 @@
 <button onclick="document.location='/orders/all'">All orders</button>
 
 <h2>Injectors</h2>
-<button onclick="document.location='/index/injectproducts'">Add products</button>
+<button onclick="document.location='/index/inject-products'">Add products</button>
 
 <h2>User panel</h2>
 <button onclick="document.location='/users/registration'">Registration</button>

@@ -30,7 +30,6 @@ For security purposes regardless of role there is obligatory procedure of login/
 - Maven 4.0.0
 - javax.servlet 3.1.0
 - jstl 1.2
-- junit 4.12
 - mysql 8.0.20
 - log4j 1.2.17
 - maven-checkstyle-plugin
@@ -51,7 +50,7 @@ Create a schema "internet_shop" in any SQL database.
 
 Use file jv-internetshop.src.main.resources.init_db.sql to create all the tables required by this app.
 
-At jv-internetshop.util.ConnectionUtil class use username, password and name of DB to create a Connection.
+At jv-internetshop.util.ConnectionUtil class use username, password and DBname to create a Connection.
 
 Change a path in jv-internetshop.src.main.resources.log4j.properties. It has to reach your logFile.
 
@@ -62,17 +61,6 @@ There is no option to create user with ADMIN access rights, so you have to do th
 ___
 
 ### <a name="authors"></a>Authors
-[6ALLIKA](https://github.com/6ALLIKA)
+[Dmytro Scorobohatyi](https://github.com/6ALLIKA)
 
 ___
-
-### Gratitude
-[Mate](https://mate.academy/ru)
-
-[boroda4436](https://github.com/boroda4436)
-
-[Sofasmile](https://github.com/Sofasmile)
-
-[RomanDubovskyi](https://github.com/RomanDubovskyi)
-
-[dmytro-hryhoruk](https://github.com/dmytro-hryhoruk)
