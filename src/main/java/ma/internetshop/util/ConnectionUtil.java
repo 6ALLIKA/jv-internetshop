@@ -1,14 +1,16 @@
-package ma.internetshop.util;
+package com.internetshop.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import ma.internetshop.exceptions.DataProcessingException;
 import org.apache.log4j.Logger;
 
 public class ConnectionUtil {
     private static final Logger LOGGER = Logger.getLogger(ConnectionUtil.class);
+    private static final String USERNAME = "b052e22caeead8";
+    private static final String PASSWORD = "aca7e093";
+    private static final String DBNAME = "heroku_8702cf8f07496a4";
 
     static {
         try {
@@ -20,17 +22,16 @@ public class ConnectionUtil {
 
     public static Connection getConnectionInternetShop() {
         Properties dbProperties = new Properties();
-        dbProperties.put("user", "root");
-        dbProperties.put("password", "12341234");
+        dbProperties.put("user", USERNAME);
+        dbProperties.put("password", PASSWORD);
 
-        String url = "jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/" + DBNAME +"?serverTimezone=UTC";
         try {
             Connection connection = DriverManager.getConnection(url, dbProperties);
             LOGGER.info("Connection to DB established");
             return connection;
         } catch (SQLException e) {
-            LOGGER.error("Cannot connect to mysql",e);
-            throw new DataProcessingException("Cant establish connection to our DB", e);
+            throw new RuntimeException("Cant establish connection to our DB", e);
         }
     }
 }
