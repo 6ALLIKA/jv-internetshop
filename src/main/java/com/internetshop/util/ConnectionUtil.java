@@ -8,6 +8,9 @@ import org.apache.log4j.Logger;
 
 public class ConnectionUtil {
     private static final Logger LOGGER = Logger.getLogger(ConnectionUtil.class);
+    private static final String USERNAME = "b052e22caeead8";
+    private static final String PASSWORD = "aca7e093";
+    private static final String DBNAME = "heroku_8702cf8f07496a4";
 
     static {
         try {
@@ -19,10 +22,10 @@ public class ConnectionUtil {
 
     public static Connection getConnectionInternetShop() {
         Properties dbProperties = new Properties();
-        dbProperties.put("user", "username");
-        dbProperties.put("password", "password");
+        dbProperties.put("user", USERNAME);
+        dbProperties.put("password", PASSWORD);
 
-        String url = "jdbc:mysql://localhost:3306/DBname?serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/" + DBNAME +"?serverTimezone=UTC";
         try {
             Connection connection = DriverManager.getConnection(url, dbProperties);
             LOGGER.info("Connection to DB established");
