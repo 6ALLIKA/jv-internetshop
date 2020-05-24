@@ -2,6 +2,7 @@ package com.internetshop.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+        ServletOutputStream out = resp.getOutputStream();
+        out.write("hello heroku".getBytes());
+        out.flush();
+        out.close();
     }
 }
