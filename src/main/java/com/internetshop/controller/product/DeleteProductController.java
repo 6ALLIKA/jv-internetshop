@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/products/delete")
 public class DeleteProductController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
-    private ProductService productService =
+    private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
 
     @Override

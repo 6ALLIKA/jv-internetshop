@@ -11,11 +11,15 @@
     <table border="1">
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" ></td>
+            <td><label>
+                <input type="text" name="name" >
+            </label></td>
         </tr>
         <tr>
             <td>Price:</td>
-            <td><input type="text" name="price"></td>
+            <td><label>
+                <input type="text" name="price">
+            </label></td>
         </tr>
         <tr>
         <tr>
@@ -33,6 +37,7 @@
         <th>Price</th>
         <th>Delete</th>
     </tr>
+    <jsp:useBean id="products" scope="request" type="java.util.List"/>
     <c:forEach var="product" items="${products}">
         <tr>
             <td>

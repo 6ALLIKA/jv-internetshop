@@ -12,6 +12,7 @@
         <th>ID</th>
         <th>Name</th>
     </tr>
+    <jsp:useBean id="users" scope="request" type="java.util.List"/>
     <c:forEach var="user" items="${users}">
         <tr>
             <td>

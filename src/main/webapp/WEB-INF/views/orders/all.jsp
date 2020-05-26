@@ -11,7 +11,9 @@
     <table border="1">
         <tr>
             <td>UserID:</td>
-            <td><input type="number" name="id"></td>
+            <td><label>
+                <input type="number" name="id">
+            </label></td>
         </tr>
         <tr>
             <td></td>
@@ -30,6 +32,7 @@
         <th>Details</th>
         <th>Delete</th>
     </tr>
+    <jsp:useBean id="orders" scope="request" type="java.util.List"/>
     <c:forEach var="order" items="${orders}">
         <tr>
             <td>

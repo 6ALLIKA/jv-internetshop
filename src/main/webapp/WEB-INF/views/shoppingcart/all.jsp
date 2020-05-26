@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>Price</th>
     </tr>
+    <jsp:useBean id="products" scope="request" type="java.util.List"/>
     <c:forEach var="product" items="${products}">
         <tr>
             <td>

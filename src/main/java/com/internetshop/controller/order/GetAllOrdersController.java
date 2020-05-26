@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/orders/all")
 public class GetAllOrdersController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
 
     @Override

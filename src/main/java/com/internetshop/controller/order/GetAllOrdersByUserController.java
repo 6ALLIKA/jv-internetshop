@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/orders/byUser")
 public class GetAllOrdersByUserController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)

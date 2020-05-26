@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/orders/delete")
 public class DeleteOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
-    private OrderService orderService = (OrderService) INJECTOR
+    private final OrderService orderService = (OrderService) INJECTOR
             .getInstance(OrderService.class);
 
     @Override

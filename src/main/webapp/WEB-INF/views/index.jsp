@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1><a href="${pageContext.request.contextPath}/"><img src="https://ih1.redbubble.net/image.1036268294.1917/flat,
-128x,075,f-pad,128x128,f8f8f8.jpg"></a></h1>
+128x,075,f-pad,128x128,f8f8f8.jpg" alt="Home page"></a></h1>
 
 <h2>Admin panel</h2>
 <button onclick="document.location='users/all'">All users</button>

@@ -13,6 +13,7 @@
         <th>Details</th>
         <th>Delete</th>
     </tr>
+    <jsp:useBean id="orders" scope="request" type="java.util.List"/>
     <c:forEach var="order" items="${orders}">
         <tr>
             <td>

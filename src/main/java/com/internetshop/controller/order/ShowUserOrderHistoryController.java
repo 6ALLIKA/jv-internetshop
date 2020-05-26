@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ShowUserOrderHistoryController extends HttpServlet {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

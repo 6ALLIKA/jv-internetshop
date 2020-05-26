@@ -22,8 +22,8 @@ public class AuthorizationFilter implements Filter {
     private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("com.internetshop");
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
-    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 
     @Override
     public void init(FilterConfig filterConfig) {

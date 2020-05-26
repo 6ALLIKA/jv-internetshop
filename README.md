@@ -33,6 +33,7 @@ For security purposes regardless of role there is obligatory procedure of login/
 - junit 4.12
 - mysql 8.0.20
 - log4j 1.2.17
+- SonarCloud Scan v1.2
 - maven-checkstyle-plugin
 
 ## <a name="setup">Setup Guide
@@ -57,9 +58,16 @@ Change a path in jv-internetshop.src.main.resources.log4j.properties. It has to 
 
 Create your first user using registration form.
 
-There is no option to create user with ADMIN access rights, so you have to do that manually in database.
+There is no option to create user with ADMIN access rights, so you have to do that manually in the database.
 
 Main page http://localhost:8080/
+
+##### Advanced
+
+Configure [SonarCloud](https://github.com/marketplace/actions/sonarcloud-scan#do-not-use-this-github-action-if-you-are-in-the-following-situations) 
+Recommendations
+[Here](https://sonarcloud.io/projects) configure your project with external CI, i was used Circle CI
+All tutorials u can find at project > Administration > Analysis Method > your preferred method 
 
 ___
 

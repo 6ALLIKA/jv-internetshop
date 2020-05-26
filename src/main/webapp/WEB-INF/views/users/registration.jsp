@@ -12,21 +12,29 @@
     <table border="1">
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name" value="<%=(request.getParameter("name") != null)
-    ? request.getParameter("name") : ""%>"></td>
+            <td><label>
+                <input type="text" name="name" value="<%=(request.getParameter("name") != null)
+        ? request.getParameter("name") : ""%>">
+            </label></td>
         </tr>
         <tr>
             <td>Login:</td>
-            <td><input type="text" name="login" value="<%=(request.getParameter("login") != null)
-    ? request.getParameter("login") : ""%>"></td>
+            <td><label>
+                <input type="text" name="login" value="<%=(request.getParameter("login") != null)
+        ? request.getParameter("login") : ""%>">
+            </label></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="pass"></td>
+            <td><label>
+                <input type="password" name="pass">
+            </label></td>
         </tr>
         <tr>
             <td>Repeat password:</td>
-            <td><input type="password" name="rep-pass"></td>
+            <td><label>
+                <input type="password" name="rep-pass">
+            </label></td>
         </tr>
         <tr>
             <td></td>

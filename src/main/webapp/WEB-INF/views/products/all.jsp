@@ -13,6 +13,7 @@
         <th>Price</th>
         <th>Add to cart</th>
     </tr>
+    <jsp:useBean id="products" scope="request" type="java.util.List"/>
     <c:forEach var="product" items="${products}">
         <tr>
             <td>
