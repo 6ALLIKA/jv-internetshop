@@ -17,6 +17,10 @@
         <maven.checkstyle.plugin.configLocation>
             https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
+        <sonar.projectKey>6ALLIKA_jv-internetshop</sonar.projectKey>
+        <sonar.organization>6allika</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>0fe255d28a0a64c8ff12280d9678e2638cbf7b6c</sonar.login>
     </properties>
 
     <dependencies>
