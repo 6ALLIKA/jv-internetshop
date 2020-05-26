@@ -14,7 +14,7 @@ import ma.internetshop.service.ProductService;
 @WebServlet("/index/injectproducts")
 public class InjectProductsController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("ma.internetshop");
-    private ProductService productService
+    private final ProductService productService
             = (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
