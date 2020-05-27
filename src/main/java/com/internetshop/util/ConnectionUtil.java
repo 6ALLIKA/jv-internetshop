@@ -12,6 +12,10 @@ public class ConnectionUtil {
     private static final String PASSWORD = "password";
     private static final String DBNAME = "DBname";
 
+    private ConnectionUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");

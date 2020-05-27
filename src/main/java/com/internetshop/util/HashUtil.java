@@ -7,7 +7,11 @@ import org.apache.log4j.Logger;
 
 public class HashUtil {
     private static final Logger LOGGER = Logger.getLogger(HashUtil.class);
-    private static final String hashName = "SHA-512";
+    private static final String HASHABLE = "SHA-512";
+
+    private HashUtil() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static byte[] getSalt() {
         SecureRandom secureRandom = new SecureRandom();
@@ -19,7 +23,7 @@ public class HashUtil {
     public static String hashPassword(String password, byte[] salt) {
         StringBuilder hashedPassword = new StringBuilder();
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance(hashName);
+            MessageDigest messageDigest = MessageDigest.getInstance(HASHABLE);
             messageDigest.update(salt);
             byte[] digest = messageDigest.digest(password.getBytes());
             for (byte b : digest) {
