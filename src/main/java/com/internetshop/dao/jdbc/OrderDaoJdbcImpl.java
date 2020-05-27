@@ -25,9 +25,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Order create(Order order) {
         String query = "INSERT INTO orders (user_id) VALUES (?);";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection
-                    .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                PreparedStatement statement = connection
+                        .prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
             statement.setLong(1, order.getUserId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -45,8 +46,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Optional<Order> get(Long id) {
         String query = "SELECT * FROM orders WHERE order_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -79,8 +80,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public Order update(Order order) {
         String query = "UPDATE orders SET user_id = ? "
                 + "WHERE order_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                PreparedStatement statement = connection.prepareStatement(query);) {
+
             statement.setLong(1, order.getUserId());
             statement.setLong(2, order.getId());
             statement.executeUpdate();
@@ -110,8 +112,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public List<Order> getUserOrders(Long userId) {
         String query = "SELECT * FROM orders WHERE user_id = ?;";
         List<Order> userOrders = new ArrayList<>();
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
