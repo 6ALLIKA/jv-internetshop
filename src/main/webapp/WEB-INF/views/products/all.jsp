@@ -1,36 +1,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>All products</title>
-</head>
-<body>
-<h1>All products</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Add to cart</th>
-    </tr>
-    <jsp:useBean id="products" scope="request" type="java.util.List"/>
-    <c:forEach var="product" items="${products}">
+<jsp:include page="../includes/header.jsp"></jsp:include>
+<h1 class="h2-responsive text-center my-5"><strong>List of all products</strong></h1>
+<div class="container">
+    <table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
         <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
-            <td>
-                <c:out value="${product.name}"/>
-            </td>
-            <td>
-                <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <button onclick="document.location='/shoppingcart/products/add?id=${product.id}'">Buy</button>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Buy</th>
         </tr>
-    </c:forEach>
-</table>
-<button onclick="document.location='/index'">Main page</button>
-</body>
-</html>
+        </thead>
+        <tbody>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td>
+                    <c:out value="${product.getId()}"/>
+                </td>
+                <td>
+                    <c:out value="${product.getName()}"/>
+                </td>
+                <td>
+                    <c:out value="${product.getPrice()}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/shoppingcart/products/add?id=${product.getId()}">Buy</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<jsp:include page="../includes/footer.jsp"></jsp:include>

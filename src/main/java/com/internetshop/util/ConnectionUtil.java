@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 
 public class ConnectionUtil {
     private static final Logger LOGGER = Logger.getLogger(ConnectionUtil.class);
-    private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
-    private static final String DBNAME = "DBname";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "12341234";
+    private static final String DBNAME = "internet_shop";
 
     private ConnectionUtil() {
         throw new IllegalStateException("Utility class");

@@ -36,6 +36,7 @@ public class LoginController extends HttpServlet {
             User user = authenticationService.login(login, password);
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
+            session.setAttribute("user_name", user.getName());
         } catch (AuthenticationException e) {
             LOGGER.warn("Unsuccessful login", e);
             req.setAttribute("message", e.getMessage());
