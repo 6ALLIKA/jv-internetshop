@@ -29,7 +29,8 @@ public class ConnectionUtil {
         dbProperties.put("user", USERNAME);
         dbProperties.put("password", PASSWORD);
 
-        String url = "jdbc:mysql://eu-cdbr-west-03.cleardb.net:3306/" + DBNAME + "?serverTimezone=UTC";
+        String url = "jdbc:mysql://eu-cdbr-west-03.cleardb.net:3306/"
+                + DBNAME + "?serverTimezone=UTC";
         try {
             Connection connection = DriverManager.getConnection(url, dbProperties);
             LOGGER.info("Connection to DB established");
