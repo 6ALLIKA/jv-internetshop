@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 
 public class ConnectionUtil {
     private static final Logger LOGGER = Logger.getLogger(ConnectionUtil.class);
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "12341234";
-    private static final String DBNAME = "internet_shop";
+    private static final String USERNAME = "b72348a2c7ec4e";
+    private static final String PASSWORD = "cd638d96";
+    private static final String DBNAME = "heroku_9b87783c6f94ade";
 
     private ConnectionUtil() {
         throw new IllegalStateException("Utility class");
@@ -29,7 +29,7 @@ public class ConnectionUtil {
         dbProperties.put("user", USERNAME);
         dbProperties.put("password", PASSWORD);
 
-        String url = "jdbc:mysql://localhost:3306/" + DBNAME + "?serverTimezone=UTC";
+        String url = "jdbc:mysql://eu-cdbr-west-03.cleardb.net:3306/" + DBNAME + "?serverTimezone=UTC";
         try {
             Connection connection = DriverManager.getConnection(url, dbProperties);
             LOGGER.info("Connection to DB established");
