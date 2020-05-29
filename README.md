@@ -31,7 +31,6 @@ For security purposes regardless of role there is obligatory procedure of login/
 - Maven 4.0.0
 - javax.servlet 3.1.0
 - jstl 1.2
-- junit 4.12
 - mysql 8.0.20
 - log4j 1.2.17
 - SonarCloud Scan v1.2
@@ -66,7 +65,9 @@ A main page http://localhost:8080/
 ##### Advanced
 
 Configure [SonarCloud](https://github.com/marketplace/actions/sonarcloud-scan#do-not-use-this-github-action-if-you-are-in-the-following-situations) 
+
 Recommendations
+
 [Here](https://sonarcloud.io/projects) configure your project with external CI, i was used Circle CI
 All tutorials u can find at project > Administration > Analysis Method > your preferred method 
 

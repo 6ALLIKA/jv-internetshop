@@ -1,55 +1,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>All orders</title>
-</head>
-<body>
-<h2>All orders page</h2>
-<h4>Search orders by user id</h4>
-<form method="post" action="${pageContext.request.contextPath}byUser">
-    <table border="1">
+<jsp:include page="../includes/header.jsp"></jsp:include>
+<div class="container">
+    <h1 class="h2-responsive text-center my-5"><strong>Find by user</strong></h1>
+    <form class="form-signin" method="post" action="${pageContext.request.contextPath}byUser">
+        <label for="inputName" class="sr-only">User id</label>
+        <input type="number" name="id" id="inputName" class="form-control" placeholder="User id" required autofocus>
+        <button class="btn btn-lg btn-info btn-block" type="submit">Search</button>
+    </form>
+    <h1 class="h2-responsive text-center my-5"><strong>List of all orders</strong></h1>
+    <table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="70%">
+        <thead>
         <tr>
-            <td>UserID:</td>
-            <td><label>
-                <input type="number" name="id">
-            </label></td>
+            <th>OrderID</th>
+            <th>UserID</th>
+            <th>Details</th>
+            <th>Delete</th>
         </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit">Search</button>
-            </td>
-        </tr>
+        </thead>
+        <tbody>
+        <jsp:useBean id="orders" scope="request" type="java.util.List"/>
+        <c:forEach var="order" items="${orders}">
+            <tr>
+                <td>
+                    <c:out value="${order.id}"/>
+                </td>
+                <td>
+                    <c:out value="${order.userId}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}details?id=${order.id}">Details</a>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}delete?id=${order.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
     </table>
-</form>
-
-<table border="1">
-    <tr>
-        <th>OrderID</th>
-        <th>UserName</th>
-        <th>UserID</th>
-        <th>Details</th>
-        <th>Delete</th>
-    </tr>
-    <jsp:useBean id="orders" scope="request" type="java.util.List"/>
-    <c:forEach var="order" items="${orders}">
-        <tr>
-            <td>
-                <c:out value="${order.id}"/>
-            </td>
-            <td>
-                <c:out value="${order.userId}"/>
-            </td>
-            <td>
-                <button onclick="document.location='details?id=${order.id}'">Details</button>
-            </td>
-            <td>
-                <button onclick="document.location='delete?id=${order.id}'">Delete</button>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-<button onclick="document.location='/index'">Main page</button>
-</body>
-</html>
+</div>
+<jsp:include page="../includes/footer.jsp"></jsp:include>
