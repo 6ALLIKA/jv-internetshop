@@ -7,6 +7,7 @@ import com.internetshop.service.OrderService;
 import com.internetshop.service.UserService;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,9 @@ public class ShowUserOrderHistoryController extends HttpServlet {
             throws ServletException, IOException {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         User user = userService.get(userId);
-        List<Order> allOrders = orderService.getUserOrders(user);
+        List<Order> allOrders = orderService.getAll()
+                .stream().filter(o -> o.getUserId().equals(user.getId()))
+                .collect(Collectors.toList());
         req.setAttribute("orders", allOrders);
         req.getRequestDispatcher("/WEB-INF/views/orders/userorders.jsp").forward(req, resp);
     }
