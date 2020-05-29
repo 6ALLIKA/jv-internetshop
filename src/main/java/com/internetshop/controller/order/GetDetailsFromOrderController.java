@@ -22,7 +22,7 @@ public class GetDetailsFromOrderController extends HttpServlet {
         Long id = Long.valueOf(req.getParameter("id"));
         Order order = orderService.get(id);
         req.setAttribute("products", order.getProducts());
-        req.setAttribute("id", order.getId());
+
         req.getRequestDispatcher("/WEB-INF/views/orders/order.jsp").forward(req, resp);
     }
 
@@ -32,7 +32,6 @@ public class GetDetailsFromOrderController extends HttpServlet {
         Long id = Long.valueOf(req.getParameter("id"));
         Order order = orderService.get(id);
         req.setAttribute("products", order.getProducts());
-        req.setAttribute("id", order.getId());
         req.getRequestDispatcher("/WEB-INF/views/orders/order.jsp").forward(req, resp);
     }
 }

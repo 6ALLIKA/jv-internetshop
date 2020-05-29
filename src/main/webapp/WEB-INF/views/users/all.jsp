@@ -1,32 +1,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>All users</title>
-</head>
-<body>
-<h2>All users page</h2>
-
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-    </tr>
-    <jsp:useBean id="users" scope="request" type="java.util.List"/>
-    <c:forEach var="user" items="${users}">
+<jsp:include page="../includes/header.jsp"/>
+<div class="container">
+    <h1 class="h2-responsive text-center my-5"><strong>All users</strong></h1>
+    <table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
         <tr>
-            <td>
-                <c:out value="${user.id}"/>
-            </td>
-            <td>
-                <c:out value="${user.name}"/>
-            </td>
-            <td>
-                <button onclick="document.location='delete?id=${user.id}'">Delete</button>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Delete</th>
         </tr>
-    </c:forEach>
-</table>
-<button onclick="document.location='/index'">Main page</button>
-</body>
-</html>
+        </thead>
+        <tbody>
+        <c:forEach var="user" items="${users}">
+            <tr>
+                <td>
+                    <c:out value="${user.id}"/>
+                </td>
+                <td>
+                    <c:out value="${user.name}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<jsp:include page="../includes/footer.jsp"/>

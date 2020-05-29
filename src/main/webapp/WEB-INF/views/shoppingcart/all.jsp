@@ -1,40 +1,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Shopping cart</title>
-</head>
-<body>
-<h1>Products in shopping cart</h1>
-<table border="1">
+<jsp:include page="../includes/header.jsp"></jsp:include>
+<div class="container">
+<h1 class="h2-responsive text-center my-5"><strong>Products in shopping cart</strong></h1>
+<table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
     <tr>
-        <th>Id</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Delete</th>
     </tr>
-    <jsp:useBean id="products" scope="request" type="java.util.List"/>
+    </thead>
+    <tbody>
     <c:forEach var="product" items="${products}">
         <tr>
             <td>
-                <c:out value="${product.id}"/>
+                <c:out value="${product.getId()}"/>
             </td>
             <td>
-                <c:out value="${product.name}"/>
+                <c:out value="${product.getName()}"/>
             </td>
             <td>
-                <c:out value="${product.price}"/>
+                <c:out value="${product.getPrice()}"/>
             </td>
             <td>
-                <button onclick="document.location='/shoppingcart/products/delete?id=${product.id}'">Delete</button>
+                <a href="${pageContext.request.contextPath}/shoppingcart/products/delete?id=${product.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>
-    <tr>
-        <td>
-            <button onclick="document.location='/orders/create'">Create order</button>
-        </td>
-    </tr>
+    </tbody>
 </table>
-    <button onclick="document.location='/index'">Main page</button>
-</body>
-</html>
+    <button class="btn btn-lg btn-success btn-block" onclick="document.location='/orders/create'" type="submit">Order</button>
+</div>
+<jsp:include page="../includes/footer.jsp"></jsp:include>
