@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../includes/header.jsp"></jsp:include>
+<title>Shopping cart</title>
 <div class="container">
 <h1 class="h2-responsive text-center my-5"><strong>Products in shopping cart</strong></h1>
 <table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="100%">

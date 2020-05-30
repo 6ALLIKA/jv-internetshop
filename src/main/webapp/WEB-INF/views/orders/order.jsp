@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../includes/header.jsp"></jsp:include>
+<title>Orders info</title>
 <div class="container">
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-6 card">

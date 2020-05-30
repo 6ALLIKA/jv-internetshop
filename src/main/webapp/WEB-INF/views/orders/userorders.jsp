@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../includes/header.jsp"></jsp:include>
+<title>History</title>
 <div class="container">
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-6 card">
-            <h1 class="h2-responsive text-center my-5"><strong>Products in shopping cart</strong></h1>
+            <h1 class="h2-responsive text-center my-5"><strong>Orders history</strong></h1>
             <table id="dtBasicExample" class="my-5 table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                 <tr>

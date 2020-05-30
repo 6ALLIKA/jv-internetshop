@@ -1,5 +1,6 @@
 package com.internetshop.controller.product;
 
+import com.internetshop.exceptions.DataProcessingException;
 import com.internetshop.lib.Injector;
 import com.internetshop.model.Product;
 import com.internetshop.service.ProductService;
@@ -28,10 +29,15 @@ public class AddProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-        String name = req.getParameter("name");
-        BigDecimal price = BigDecimal.valueOf(Long.parseLong(req.getParameter("price")));
-        productService.create(new Product(name, price));
-        resp.sendRedirect(req.getContextPath() + "/products/add");
+            throws IOException, ServletException {
+        try {
+            String name = req.getParameter("name");
+            BigDecimal price = BigDecimal.valueOf(Long.parseLong(req.getParameter("price")));
+            productService.create(new Product(name, price));
+            resp.sendRedirect(req.getContextPath() + "/products/add");
+        } catch (DataProcessingException e) {
+            req.setAttribute("message", "You can't add product with similar name");
+            req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
+        }
     }
 }

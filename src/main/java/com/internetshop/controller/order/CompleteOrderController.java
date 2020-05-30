@@ -26,8 +26,14 @@ public class CompleteOrderController extends HttpServlet {
 
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
-        orderService.completeOrder(shoppingCart);
-        req.setAttribute("message", "Your order successfully created");
-        req.getRequestDispatcher("/WEB-INF/views/orders/userorderinfo.jsp").include(req, resp);
+        if (shoppingCart.getProducts().size() > 0) {
+            orderService.completeOrder(shoppingCart);
+            req.setAttribute("message", "Your order successfully created");
+            req.getRequestDispatcher("/WEB-INF/views/orders/userorderinfo.jsp").include(req, resp);
+        } else {
+            req.setAttribute("message", "Your shopping cart is empty");
+            req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").include(req, resp);
+        }
+
     }
 }
