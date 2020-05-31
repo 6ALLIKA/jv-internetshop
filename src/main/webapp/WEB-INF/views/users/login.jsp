@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <jsp:include page="../includes/backgroundVideo.jsp"/>
+<title>Login</title>
 <body class="text-center">
-
 <form class="form-signin" method="post" action="${pageContext.request.contextPath}login">
     <h1 class="h3 mb-3 font-weight-normal" style="color: #efefef">Sign in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
