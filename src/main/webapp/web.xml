@@ -6,10 +6,10 @@
 
     <filter>
         <filter-name>Authentication Filter</filter-name>
-        <filter-class>ma.internetshop.web.filters.AuthenticationFilter</filter-class>
+        <filter-class>com.internetshop.web.filters.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>excludeUrls</param-name>
-            <param-value>/,/index,/products/all,/users/login,/users/registration,/index/injectusers,/index/injectproducts</param-value>
+            <param-value>/,/index,/products/all,/users/login,/users/registration,/index/inject-products</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -19,7 +19,7 @@
 
     <filter>
         <filter-name>Authorization Filter</filter-name>
-        <filter-class>ma.internetshop.web.filters.AuthorizationFilter</filter-class>
+        <filter-class>com.internetshop.web.filters.AuthorizationFilter</filter-class>
         <init-param>
             <param-name>adminUrls</param-name>
             <param-value>/products/add,/products/delete,/users/all,/users/delete,/orders/all,/orders/delete,/orders/byUser,/orders/details</param-value>

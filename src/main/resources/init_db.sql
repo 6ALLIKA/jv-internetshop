@@ -1,5 +1,18 @@
 CREATE SCHEMA `internet_shop` DEFAULT CHARACTER SET utf8;
 
+CREATE TABLE `internet_shop`.`users`
+(
+    `user_id`   bigint         NOT NULL AUTO_INCREMENT,
+    `user_name` varchar(256)   NOT NULL,
+    `pass`      varchar(256)   NOT NULL,
+    `login`     varchar(256)   NOT NULL,
+    `salt`      varbinary(500) NOT NULL,
+    PRIMARY KEY (`user_id`),
+    UNIQUE KEY `user_id_UNIQUE` (`user_id`),
+    UNIQUE KEY `user_login_UNIQUE` (`login`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 CREATE TABLE `internet_shop`.`orders`
 (
     `order_id` bigint NOT NULL AUTO_INCREMENT,
@@ -8,17 +21,6 @@ CREATE TABLE `internet_shop`.`orders`
     UNIQUE KEY `order_id_UNIQUE` (`order_id`),
     KEY `orders_users_fk_idx` (`user_id`),
     CONSTRAINT `orders_users_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
-CREATE TABLE `internet_shop`.`orders_products`
-(
-    `order_id`   bigint NOT NULL,
-    `product_id` bigint NOT NULL,
-    KEY `orders_orders_fk_idx` (`order_id`),
-    KEY `orders_products_fk_idx` (`product_id`),
-    CONSTRAINT `orders_orders_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
-    CONSTRAINT `orders_products_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
@@ -54,6 +56,17 @@ CREATE TABLE `internet_shop`.`shopping_carts`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE `internet_shop`.`orders_products`
+(
+    `order_id`   bigint NOT NULL,
+    `product_id` bigint NOT NULL,
+    KEY `orders_orders_fk_idx` (`order_id`),
+    KEY `orders_products_fk_idx` (`product_id`),
+    CONSTRAINT `orders_orders_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+    CONSTRAINT `orders_products_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 CREATE TABLE `internet_shop`.`shopping_carts_products`
 (
     `cart_id`    bigint NOT NULL,
@@ -62,19 +75,6 @@ CREATE TABLE `internet_shop`.`shopping_carts_products`
     KEY `cart_product_fk_idx` (`product_id`),
     CONSTRAINT `cart_cart_fk` FOREIGN KEY (`cart_id`) REFERENCES `shopping_carts` (`cart_id`),
     CONSTRAINT `cart_product_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
-CREATE TABLE `internet_shop`.`users`
-(
-    `user_id`   bigint         NOT NULL AUTO_INCREMENT,
-    `user_name` varchar(256)   NOT NULL,
-    `pass`      varchar(256)   NOT NULL,
-    `login`     varchar(256)   NOT NULL,
-    `salt`      varbinary(500) NOT NULL,
-    PRIMARY KEY (`user_id`),
-    UNIQUE KEY `user_id_UNIQUE` (`user_id`),
-    UNIQUE KEY `user_login_UNIQUE` (`login`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
@@ -89,3 +89,5 @@ CREATE TABLE `internet_shop`.`users_roles`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+INSERT INTO internet_shop.roles (role_id, role_name) VALUES (1, "USER");
+INSERT INTO internet_shop.roles (role_id, role_name) VALUES (2, "ADMIN");

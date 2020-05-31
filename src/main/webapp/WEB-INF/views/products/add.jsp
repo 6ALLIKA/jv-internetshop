@@ -1,55 +1,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>New product</title>
-</head>
-<body>
-<h1>Put product details below</h1>
-
-<form method="post" action="${pageContext.request.contextPath}add">
-    <table border="1">
+<jsp:include page="../includes/header.jsp"></jsp:include>
+<title>Product management</title>
+<div class="container">
+    <h1 class="h2-responsive text-center my-5"><strong>Add product</strong></h1>
+    <form class="form-signin" method="post" action="${pageContext.request.contextPath}add">
+        <label for="inputName" class="sr-only">Product name</label>
+        <input type="text" name="name" id="inputName" class="form-control" placeholder="Product name" required autofocus>
+        <label for="inputPrice" class="sr-only">Product price</label>
+        <input type="text" name="price" id="inputPrice" class="form-control" placeholder="Product price" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add product</button>
+    </form>
+    <h1 class="h2-responsive text-center my-5"><strong>List of all products</strong></h1>
+    <table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
         <tr>
-            <td>Name:</td>
-            <td><input type="text" name="name" ></td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Delete</th>
         </tr>
-        <tr>
-            <td>Price:</td>
-            <td><input type="text" name="price"></td>
-        </tr>
-        <tr>
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit">Add product</button>
-            </td>
-        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="product" items="${products}">
+            <tr>
+                <td>
+                    <c:out value="${product.getId()}"/>
+                </td>
+                <td>
+                    <c:out value="${product.getName()}"/>
+                </td>
+                <td>
+                    <c:out value="${product.getPrice()}"/>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/products/delete?id=${product.getId()}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
     </table>
-</form>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Delete</th>
-    </tr>
-    <c:forEach var="product" items="${products}">
-        <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
-            <td>
-                <c:out value="${product.name}"/>
-            </td>
-            <td>
-                <c:out value="${product.price}"/>
-            </td>
-            <td>
-                <button onclick="document.location='delete?id=${product.id}'">Delete</button>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-<button onclick="document.location='/index'">Main page</button>
-</body>
-</html>
+</div>
+<jsp:include page="../includes/footer.jsp"></jsp:include>
