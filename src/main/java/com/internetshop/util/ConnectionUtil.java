@@ -28,7 +28,6 @@ public class ConnectionUtil {
         Properties dbProperties = new Properties();
         dbProperties.put("user", USERNAME);
         dbProperties.put("password", PASSWORD);
-
         String url = "jdbc:mysql://eu-cdbr-west-03.cleardb.net:3306/"
                 + DBNAME + "?serverTimezone=UTC";
         try {

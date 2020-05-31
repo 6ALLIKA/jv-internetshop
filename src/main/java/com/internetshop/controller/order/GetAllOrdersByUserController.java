@@ -1,5 +1,6 @@
 package com.internetshop.controller.order;
 
+import com.internetshop.exceptions.DataProcessingException;
 import com.internetshop.lib.Injector;
 import com.internetshop.model.Order;
 import com.internetshop.model.User;
@@ -24,13 +25,18 @@ public class GetAllOrdersByUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long id = Long.valueOf(req.getParameter("id"));
-        User user = userService.get(id);
-        List<Order> allOrders = orderService.getAll()
-                .stream().filter(o -> o.getUserId().equals(user.getId()))
-                .collect(Collectors.toList());
-        req.setAttribute("orders", allOrders);
-        req.setAttribute("id", user.getId());
-        req.getRequestDispatcher("/WEB-INF/views/orders/byUser.jsp").forward(req, resp);
+        try {
+            Long id = Long.valueOf(req.getParameter("id"));
+            User user = userService.get(id);
+            List<Order> allOrders = orderService.getAll()
+                    .stream().filter(o -> o.getUserId().equals(user.getId()))
+                    .collect(Collectors.toList());
+            req.setAttribute("orders", allOrders);
+            req.setAttribute("id", user.getId());
+            req.getRequestDispatcher("/WEB-INF/views/orders/byUser.jsp").forward(req, resp);
+        } catch (DataProcessingException e) {
+            req.setAttribute("message", "Incorrect user id");
+            req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
+        }
     }
 }

@@ -25,9 +25,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product create(Product product) {
         String query = "INSERT INTO products"
                 + " (product_name, price) VALUES (?, ?);";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection
-                    .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection
+                        .prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, product.getName());
             statement.setBigDecimal(2, product.getPrice());
             statement.executeUpdate();
@@ -45,8 +45,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Optional<Product> get(Long id) {
         String query = "SELECT * FROM products WHERE product_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -63,8 +63,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public List<Product> getAll() {
         String query = "SELECT * FROM products;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            Statement statement = connection.createStatement();
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
             List<Product> products = new ArrayList<>();
             while (resultSet.next()) {
@@ -82,8 +82,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         String query = "UPDATE products "
                 + "SET product_name = ?, price = ? "
                 + "WHERE product_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
             statement.setBigDecimal(2, product.getPrice());
             statement.setLong(3, product.getId());
@@ -101,8 +101,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public boolean delete(Long id) {
         String query = "DELETE  FROM products "
                 + "WHERE product_id=?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             int numberOfRowsDeleted = statement.executeUpdate();
             return numberOfRowsDeleted != 0;

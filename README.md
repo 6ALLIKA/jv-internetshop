@@ -1,6 +1,8 @@
 # Internet shop
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=6ALLIKA_jv-internetshop&metric=alert_status)](https://sonarcloud.io/dashboard?id=6ALLIKA_jv-internetshop)
 
+Also, you can visit [site](https://jv-internetshop.herokuapp.com/)
+
 # Table of Contents
 * [Short description](#description)
 * [Project structure](#structure)
@@ -11,8 +13,8 @@
 In this project I attempted to implement basics functions of an online store. There are two type of roles in that store: USER and ADMIN. Each of them has the following are access rights:
 
 * for **Admin**
-  * get list of users/items;
-  * add/remove user or item;
+  * get list of users/items/orders;
+  * add/remove user, order or item;
 
 * for **User**
   * get list of all items;
@@ -58,7 +60,7 @@ Change a path in jv-internetshop.src.main.resources.log4j.properties. It has to 
 
 Create your first user using registration form.
 
-There is no option to create user with ADMIN access rights, so you have to do that manually in the database.
+There is no option to create user with ADMIN access rights, so you have to do that **manually** in the database.
 
 A main page http://localhost:8080/
 

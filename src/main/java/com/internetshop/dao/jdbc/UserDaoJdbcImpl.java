@@ -26,8 +26,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public Optional<User> getByLogin(String login) {
         String query = "SELECT * FROM users WHERE login = ?;";
         User user;
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -46,9 +46,9 @@ public class UserDaoJdbcImpl implements UserDao {
     public User create(User user) {
         String query = "INSERT INTO users (user_name, login, pass, salt) "
                 + "VALUES (?, ?, ?, ?);";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query,
-                    PreparedStatement.RETURN_GENERATED_KEYS);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query,
+                         PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
@@ -70,8 +70,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public Optional<User> get(Long id) {
         String query = "SELECT * FROM users WHERE user_id = ?;";
         User user;
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -90,8 +90,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public List<User> getAll() {
         String query = "SELECT * FROM users;";
         List<User> allUsers = new ArrayList<>();
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 User user = getUserFromResultSet(resultSet);
@@ -108,8 +108,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public User update(User user) {
         String query = "UPDATE users SET user_name = ?, login = ?, pass = ?, salt = ? "
                 + "WHERE user_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
@@ -129,8 +129,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public boolean delete(Long id) {
         String query = "DELETE FROM users WHERE user_id = ?;";
         deleteUserFromUsersRoles(id);
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             int numberOfRowsDeleted = statement.executeUpdate();
             LOGGER.info("User with id " + id + " was deleted.");
@@ -176,8 +176,8 @@ public class UserDaoJdbcImpl implements UserDao {
     private Set<Role> getRolesFromUserId(Long userId) {
         String query = "SELECT role_name FROM users_roles "
                 + "JOIN roles USING (role_id) WHERE user_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             Set<Role> roles = new HashSet<>();
@@ -193,8 +193,8 @@ public class UserDaoJdbcImpl implements UserDao {
 
     private void deleteUserFromUsersRoles(Long userId) {
         String query = "DELETE FROM users_roles WHERE user_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnectionInternetShop()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = ConnectionUtil.getConnectionInternetShop();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             statement.executeUpdate();
         } catch (SQLException ex) {
