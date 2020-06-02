@@ -68,6 +68,8 @@ A main page http://localhost:8080/
 
 Configure [SonarCloud](https://github.com/marketplace/actions/sonarcloud-scan#do-not-use-this-github-action-if-you-are-in-the-following-situations) 
 
+---
+
 Recommendations
 
 [Here](https://sonarcloud.io/projects) configure your project with external CI, i was used Circle CI
