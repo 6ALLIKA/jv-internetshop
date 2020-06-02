@@ -26,7 +26,9 @@
                     <c:out value="${product.getPrice()}"/>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/shoppingcart/products/add?id=${product.getId()}">Buy</a>
+                    <a href="${pageContext.request.contextPath}/shoppingcart/products/add?id=${product.getId()}"
+                       type="button"  class="btn btn-info btn-sm">Buy
+                    </a>
                 </td>
             </tr>
         </c:forEach>

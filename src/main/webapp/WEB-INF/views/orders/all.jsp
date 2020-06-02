@@ -30,10 +30,14 @@
                     <c:out value="${order.userId}"/>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}details?id=${order.id}">Details</a>
+                    <a href="${pageContext.request.contextPath}details?id=${order.id}"
+                       type="button"  class="btn btn-info btn-sm">Details
+                    </a>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}delete?id=${order.id}">Delete</a>
+                    <a href="${pageContext.request.contextPath}delete?id=${order.id}"
+                       type="button"  class="btn btn-info btn-sm">Delete
+                    </a>
                 </td>
             </tr>
         </c:forEach>
