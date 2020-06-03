@@ -4,7 +4,8 @@
 <title>List of all products</title>
 <h1 class="h2-responsive text-center my-5"><strong>List of all products</strong></h1>
 <div class="container">
-    <table id="dtBasicExample" class="mt-5 table table-striped table-bordered" cellspacing="0" width="100%">
+    <div class="row d-flex justify-content-center">
+    <table id="dtBasicExample" class="mt-5 table align-content-center table-striped table-bordered col-6" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th>ID</th>
@@ -34,5 +35,6 @@
         </c:forEach>
         </tbody>
     </table>
+    </div>
 </div>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

@@ -7,28 +7,24 @@
         height: 100%;
     }
 </style>
-<html>
+
+<body>
 <div class="big-banner">
-    <!-- Page Content -->
-<%--<section>--%>
-    <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h1 class="mt-5">Project of simple internet shop</h1>
-                <p>
+                <h1 class="mt-5 ml-5">Project of simple internet shop</h1>
+                <p class="ml-5">
                     Hello, a random visitor, first of all, so that you can do something, you need to register, and you have the usual customer functionality, if you need the admin functions, you need to update the role in the database, if you got here, then you know what to do: )
                 </p>
-                <p>
+                <p class="ml-5">
                     Feel free do what u want, if it works ;)
                 </p>
-                <p>
+                <p class="ml-5">
                     Read the readme <a href="https://github.com/6ALLIKA/jv-internetshop">here</a> for details.
                 </p>
             </div>
         </div>
-    </div>
-<%--</section>--%>
 </div>
-</html>
+</body>
 <jsp:include page="includes/footer.jsp"/>
 

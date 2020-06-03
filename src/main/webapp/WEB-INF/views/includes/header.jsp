@@ -12,7 +12,7 @@
           rel="icon" type="image/x-icon">
     <title></title>
 </head>
-<body class="cloudy-knoxville-gradient">
+<header class="cloudy-knoxville-gradient">
 <nav class="navbar navbar-expand-lg navbar-dark peach-gradient">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -67,5 +67,5 @@
         </ul>
     </div>
 </nav>
-</body>
+</header>
 </html>

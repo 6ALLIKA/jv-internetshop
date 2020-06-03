@@ -8,7 +8,6 @@ import com.internetshop.service.OrderService;
 import com.internetshop.service.UserService;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,9 +27,7 @@ public class GetAllOrdersByUserController extends HttpServlet {
         try {
             Long id = Long.valueOf(req.getParameter("id"));
             User user = userService.get(id);
-            List<Order> allOrders = orderService.getAll()
-                    .stream().filter(o -> o.getUserId().equals(user.getId()))
-                    .collect(Collectors.toList());
+            List<Order> allOrders = orderService.getUserOrders(user);
             req.setAttribute("orders", allOrders);
             req.setAttribute("id", user.getId());
             req.getRequestDispatcher("/WEB-INF/views/orders/byUser.jsp").forward(req, resp);

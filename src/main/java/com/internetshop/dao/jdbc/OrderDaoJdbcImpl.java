@@ -116,7 +116,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 userOrders.add(getCopyOfOrder(resultSet));
             }
             return userOrders;
