@@ -44,9 +44,9 @@ Open the project in your IDE.
 
 Add it as maven project.
 
-Configure [Tomcat](https://habr.com/ru/post/274587/ "Example"):
+Configure [Tomcat](https://habr.com/ru/post/274587/ "Example").
 
-add sdk 11.0.3;
+add sdk 11.0.3.
 
 Add sdk 11.0.3 in project struсture.
 
@@ -63,6 +63,7 @@ Create your first user using registration form.
 There is no option to create user with ADMIN access rights, so you have to do that **manually** in the database.
 
 A main page http://localhost:8080/
+___
 
 ##### Advanced
 
@@ -75,7 +76,6 @@ Recommendations
 [Here](https://sonarcloud.io/projects) configure your project with external CI, i was used Circle CI
 All tutorials u can find at project > Administration > Analysis Method > your preferred method 
 
-___
 
 ### <a name="authors"></a>Authors
 [Skorobohatyi Dmytro](https://github.com/6ALLIKA)
